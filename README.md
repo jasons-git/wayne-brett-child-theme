@@ -79,6 +79,6 @@ Areas are highlighted to show boundaries and full width wraps these colors are c
 
 Download the zip rename the theme '**genesischild**' - place this theme in your WordPress installation **"/wp-content/themes/"** and activate in WordPress Dashboard
 
-![Genesis Child Theme](http://themes.practicalit.info/wp-content/themes/metro/images/widgetized-home-page.png)
+![Genesis Child Theme](http://waynebrett.com/wp-content/uploads/2014/08/home-page-metro-wayne-brett-child-theme.png)
 
-![Genesis Child Theme Widget Areas](http://themes.practicalit.info/wp-content/themes/metro/images/widgetized-home-page.png)
+![Genesis Child Theme Widget Areas](http://waynebrett.com/wp-content/uploads/2014/08/home-page-metro-wayne-brett-child-theme.png)
