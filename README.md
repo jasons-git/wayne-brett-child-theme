@@ -1,5 +1,3 @@
-#Author Nate Lewis
-#Original theme taken from author - NeilGee
 #Wayne Brett Metro Genesis Child Theme
 
 This is a basic starter **Genesis Child Theme** to be used with the **Genesis Framework** on **WordPress**.
