@@ -1,3 +1,5 @@
+#Author Nate Lewis
+#Original theme taken from author - NeilGee
 #Wayne Brett Metro Genesis Child Theme
 
 This is a basic starter **Genesis Child Theme** to be used with the **Genesis Framework** on **WordPress**.
@@ -42,13 +44,12 @@ genesis();
 
 **Example**
 For an online visual:
-https://themes.practicalit.info/metro/
-Areas are highlighted to show boundaries and full width wraps these colors are commented out in the CSS.
+http://dev2.practicalit.info/
 
 **Menus**
 - Primary Menu is positioned in Header Right Widget Hook and set to Primary Location
 - Secondary Menu remains in default area and is Secondary Location
-- SlickNav responsive menu targetted for the Primary Navigation set to toggle at 600px wide - Commented in **functions.php** and **style.css** for adjustments
+- SlickNav responsive menu targeted for the Primary Navigation set to toggle at 600px wide - Commented in **functions.php** and **style.css** for adjustments
 
 **Background Image**
 - Background Images is supported, a background image can be uploaded in the WP Dashboard via Appearance > Background, this will scale to fit any viewport via BackstrechJS.
@@ -79,4 +80,8 @@ Areas are highlighted to show boundaries and full width wraps these colors are c
 
 Download the zip rename the theme '**genesischild**' - place this theme in your WordPress installation **"/wp-content/themes/"** and activate in WordPress Dashboard
 
-![Genesis Child Theme Widget Areas](http://waynebrett.com/wp-content/uploads/2014/08/home-page-metro-wayne-brett-child-theme.png)
+![Wayne Brett Metro Genesis Child Theme Widgetized Home Page](http://waynebrett.com/wp-content/uploads/2014/08/widgets-metro-wayne-brett-child-theme-e1409177512869.png)
+
+![Wayne Brett Metro Genesis Child Theme Widget Area (All the Widgets with "Alt" in the name are for the widgetized home page)](http://waynebrett.com/wp-content/uploads/2014/08/widgets-metro-wayne-brett-child-theme1.png)
+
+![Wayne Brett Metro Genesis Child Theme Widget Areas (with a detailed description)](http://waynebrett.com/wp-content/uploads/2014/08/widgets-open-metro-wayne-brett-child-theme.png)
