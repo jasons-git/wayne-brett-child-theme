@@ -1,4 +1,4 @@
-#GenesisChild
+#Wayne Brett Metro Genesis Child Theme
 
 This is a basic starter **Genesis Child Theme** to be used with the **Genesis Framework** on **WordPress**.
 
@@ -7,13 +7,18 @@ This Genesis child theme is declaring support for HTML5, it is responsive and ha
 **Widgetised Areas**
 - The theme contains the following widgets
 * Pre-Header Left
-* Pre-Header Right widgetised areas
-* Header Right
+* Pre-Header Right
 * Hero - Home Page only *front-page.php*
-* Optin
-* Home Left - Home Page only *front-page.php*
-* Home Middle - Home Page only *front-page.php*
-* Home Right - Home Page only *front-page.php*
+* Main Content 1 Top Left 33% - Main Content Page only *front-page.php*
+* Main Content 2 Top Middle 33% - Main Content Page only *front-page.php*
+* Main Content 3 Top Right 33% - Main Content Page only *front-page.php*
+* Main Content 4 Bottom Left 33% - Main Content Page only *front-page.php*
+* Main Content 5 Bottom Left 33% - Main Content Page only *front-page.php*
+* Main Content 6 Bottom Left 33% - Main Content Page only *front-page.php*
+* Main Content 1-2 Top Left 66% - Main Content Page only *front-page.php*
+* Main Content 2-3 Top Right 66% - Main Content Page only *front-page.php*
+* Main Content 4-5 Bottom Left 66% - Main Content Page only *front-page.php*
+* Main Content 5-6 Bottom Right 66% - Main Content Page only *front-page.php*
 * Before Content *posts only*
 * After Content *posts only*
 * Footer Widget Header
