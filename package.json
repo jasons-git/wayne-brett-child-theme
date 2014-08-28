@@ -1,7 +1,7 @@
 {
   "name": "Wayne-Brett-Child-Theme",
   "version": "1.0.0",
-  "description": "A Genesis Child Theme with a Metro look and feel; made with care by practicalIT for waynebrett.com.",
+  "description": "A Genesis Child Theme with a Metro look and feel; made with care by PracticalIT for waynebrett.com.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified \" && exit 1"
