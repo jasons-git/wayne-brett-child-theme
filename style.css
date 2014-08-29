@@ -977,8 +977,9 @@ img.alignright,
 	width: 154px;
 	height: 144px;
 	background-color: #ED581D;
-	margin-left: 2%;
+	margin-left: 1.2%;
 	border-radius: 2px;
+	margin-right:0;
 }
 
 .menu-primary li a
@@ -1521,10 +1522,7 @@ a.more-link {
 	font-size:14px;
 	margin-top:10px;
 	padding:5px 20px;
-	border-radius:4px;
 	color:#fcfcfc;
-	background-color:#9c9c9c;
-	border:1px solid #7e7e7e;
 	transition-property: opacity;
 	transition-delay: 0.3s;
 	transition-duration: .5s;
@@ -1549,24 +1547,7 @@ a.more-link:hover {
 /
 /These colors where used to visualise the various widget areas
 ------------------------------------------------------------------------------------------------------------------------*/
-/*.site-inner {padding-top:10px;}
-.entry {margin-bottom:10px;}
-.preheadercontainer {background-color:aquamarine;}
-.preheaderleft {background-color:aliceblue;}
-.preheaderright {background-color:antiquewhite;}
 
-.herocontainer {background-color:cadetblue;}
-.optincontainer {background-color:blanchedalmond;}
-.footerwidgetheader-container {background-color:darkolivegreen;}
-.site-footer {background-color:azure;}
-.postfooterleft {background-color:indianred;}
-.postfooterright {background-color:antiquewhite;}
-.beforecontent {background-color:coral;}
-.aftercontent {background-color:coral;}*/
-
-.optincontainer, .herocontainer, .home-module-container {
-	padding: 1%;
-}
 
 
 
@@ -1734,65 +1715,24 @@ a.more-link:hover {
 /
 /
 ------------------------------------------------------------------------------------------------------------------------*/
-/*
-	TEMP HOME PAGE STYLE
------------------------------------------------------------------------------------------------------------------------- */
-.textwidget {
-	padding: 0;
-}
 
-.textwidget p {
-	text-align: center;
-}
-
-p.test {
-	width: 100%;
-	padding: 15px;
-	border-radius: 3px;
-	border: 1px solid #ccc;
-}
-
-p.hero.full {
-	min-height: 300px;
-}
-
-p.test.pre-header {
-	height: 50px;
-	background-color: #3D3D3D;
-	color: #ED581D;
-	line-height: 1;
-}
-
-p.main-content,
-p.test.hero {
-	height: 250px;
-	background-color: #FCFCFC;
-	line-height: 250px;
-}
-
-p.test.footer {
-	background-color: transparent;
-	border: none;
-}
 
 aside.widget-area.header-widget-area {
-	width: 55%;
+	width: 64%;
 }
 
 .title-area {
-	width: 40%;
+	width: 34%;
 }
 
 .header-image .site-title > a {
 	background: url(http://dev2.practicalit.info/wp-content/uploads/2014/08/logo.png) no-repeat left;
 	float: left;
-	min-height: 125px;
+	min-height: 144px;
 	width: 100%;
 }
 
-.herocontainer, .home-module-container {
-	padding: 0;
-}
+.menu-primary li:first-child {margin-left:0;}
 
 /*----------------------------------------------Slick Navs Responsive Mobile Menu------------------------------------------*
 / Menu set to swap to Mobile version at 600px - Adjust px to suit
