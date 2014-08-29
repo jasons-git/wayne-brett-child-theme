@@ -2,7 +2,7 @@
 
 /************************************************
 * @package WayneBrettMetroChildTheme
-* @author  Nate Lewis
+* @authors  Nate Lewis & Jason Lewis
 * @license GPL-2.0+
 * @link    http://practicalit.info/
 ************************************************/
