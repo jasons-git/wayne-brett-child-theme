@@ -19,7 +19,9 @@ add_action( 'genesis_setup', 'genesischild_theme_setup' );
 
 function genesischild_theme_setup() {
 
-	add_theme_support( 'html5' );
+
+	//* Add HTML5 markup structure
+	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 	add_theme_support( 'genesis-responsive-viewport' );
 	add_theme_support( 'genesis-footer-widgets', 3 );
 	add_theme_support( 'custom-background' );
@@ -37,11 +39,8 @@ function genesischild_theme_setup() {
 	add_action( 'wp_enqueue_scripts', 'genesischild_responsive_scripts' );
 	add_action( 'widgets_init', 'genesischild_extra_widgets' );
 	add_action( 'genesis_before_loop','genesischild_before_entry_widget' );
-	add_action( 'genesis_before_footer','genesischild_footerwidgetheader', 5 );
 	add_action( 'genesis_footer','genesischild_footer_widget' );
-	add_action( 'genesis_after_footer','genesischild_postfooter_widget' );
 	add_action( 'genesis_before_header','genesischild_preheader_widget' );
-	add_action( 'genesis_after_header','genesischild_optin_widget', 9 );
 	add_action( 'genesis_header_right','genesis_do_nav' );
 	//add_action( 'genesis_before', 'likebox_facebook_script' ); //Uncomment if using facebook likebox function below
 
@@ -51,22 +50,41 @@ function genesischild_theme_setup() {
 	add_filter( 'comment_form_defaults', 'genesischild_comment_form_defaults' );
 	add_filter( 'comment_form_defaults', 'genesischild_remove_comment_form_allowed_tags' );
 	add_filter( 'genesis_post_info', 'genesischild_post_info' );
-	add_filter( 'theme_page_templates', 'genesis_remove_blog_archive' );
 	add_filter( 'genesis_do_nav','themeprefix_modify_genesis_do_nav', 10, 3 );
+	//* Modify breadcrumb arguments.
+	add_filter( 'genesis_breadcrumb_args', 'sp_breadcrumb_args' );
+
 }
 
 
 
 //Child Theme Functions Go Here
-
+function sp_breadcrumb_args( $args ) {
+	$args['home'] = 'Home';
+	$args['sep'] = ' / ';
+	$args['list_sep'] = ', '; // Genesis 1.5 and later
+	$args['prefix'] = '<div class="breadcrumb">';
+	$args['suffix'] = '</div>';
+	$args['heirarchial_attachments'] = true; // Genesis 1.5 and later
+	$args['heirarchial_categories'] = true; // Genesis 1.5 and later
+	$args['display'] = true;
+	$args['labels']['prefix'] = 'You are here: ';
+	$args['labels']['author'] = 'Archives for ';
+	$args['labels']['category'] = 'Archives for '; // Genesis 1.6 and later
+	$args['labels']['tag'] = 'Archives for ';
+	$args['labels']['date'] = 'Archives for ';
+	$args['labels']['search'] = 'Search for ';
+	$args['labels']['tax'] = 'Archives for ';
+	$args['labels']['post_type'] = 'Archives for ';
+	$args['labels']['404'] = 'Not found: '; // Genesis 1.5 and later
+return $args;
+}
 //Script-tac-ulous -> All the Scripts and Styles Registered and Enqueued, scripts first - then styles
 function genesischild_scripts_styles() {
 	wp_register_script ( 'placeholder' , get_stylesheet_directory_uri() . '/js/placeholder.js', array( 'jquery' ), '1', true );
-	wp_register_style ( 'googlefonts' , '//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,300,800', '', '2', 'all' );
 	wp_register_style ( 'fontawesome' , '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css', '' , '4.1.0', 'all' );
 
 	wp_enqueue_script( 'placeholder' );//version 3.0.2
-	wp_enqueue_style( 'googlefonts' );
 	wp_enqueue_style( 'fontawesome' );
 	//wp_enqueue_style( 'dashicons' ); //Uncomment if DashIcons required in front end
 }
@@ -213,6 +231,13 @@ function genesischild_extra_widgets() {
 		'after_widget' => '</div>',
 	) );
 	//
+	genesis_register_sidebar( array(
+		'id'          => 'before-entry',
+		'name'        => __( 'Before Entry', 'genesischild' ),
+		'description' => __( 'This is the before content area', 'genesischild' ),
+		'before_widget' => '<div class="before-entry">',
+		'after_widget' => '</div>',
+	) );
 }
 
 //Position the PreHeader Area
@@ -297,13 +322,6 @@ function themeprefix_modify_genesis_do_nav( $nav_output, $nav, $args ) {
 	 return sprintf( $nav_output, $nav, $args );
 }
 
-// Remove Genesis Blog & Archive
-function genesis_remove_blog_archive( $templates ) {
-	unset( $templates['page_blog.php'] );
-	unset( $templates['page_archive.php'] );
-	return $templates;
-}
-
 //Allow PHP to run in Widgets
 function genesis_execute_php_widgets( $html ) {
 	if ( strpos( $html, "<" . "?php" ) !==false ) {
@@ -323,7 +341,7 @@ function genesischild_read_more_link() {
 //Remove Author Name on Post Meta
 function genesischild_post_info( $post_info ) {
 	if ( !is_page() ) {
-	$post_info = 'Posted on [post_date] [post_comments] [post_edit]';
+	$post_info = '[post_date] [post_comments] [post_edit]';
 	return $post_info;
 	}
 }
