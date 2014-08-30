@@ -13,32 +13,21 @@
 // original authors URI - http://coolestguidesontheplanet.com/
 
 // Start the engine the other way around - set up child after parent - add in theme supports, actions and filters
-
 add_action( 'genesis_setup', 'genesischild_theme_setup' );
 
 function genesischild_theme_setup() {
 
 
-	//* Add HTML5 markup structure
+	// Add HTML5 markup structure
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 	add_theme_support( 'genesis-responsive-viewport' );
 	add_theme_support( 'genesis-footer-widgets', 3 );
 	add_theme_support( 'custom-background' );
 	add_theme_support( 'genesis-after-entry-widget-area' );
 
-	//* Add support for post formats
-	add_theme_support( 'post-formats', array(
-		'aside',
-		'audio',
-		'chat',
-		'gallery',
-		'image',
-		'link',
-		'quote',
-		'status',
-		'video'
-	) );
-	//* Add support for post format images
+	// Add support for post formats
+	add_theme_support( 'post-formats', array('aside','audio','chat','gallery','image','link','quote','status','video') );
+	// Add support for post format images
 	add_theme_support( 'genesis-post-format-images' );
 	//add_theme_support( 'genesis-connect-woocommerce' ); //Uncomment if using woocommerce
 
@@ -65,11 +54,21 @@ function genesischild_theme_setup() {
 	add_filter( 'comment_form_defaults', 'genesischild_remove_comment_form_allowed_tags' );
 	add_filter( 'genesis_post_info', 'genesischild_post_info' );
 	add_filter( 'genesis_do_nav','themeprefix_modify_genesis_do_nav', 10, 3 );
-	//* Modify breadcrumb arguments.
+	// Modify breadcrumb arguments.
 	add_filter( 'genesis_breadcrumb_args', 'sp_breadcrumb_args' );
+	// Customize search form input box text
+	add_filter( 'genesis_search_text', 'sp_search_text' );
+	// Customize search form input button text
+	add_filter( 'genesis_search_button_text', 'sp_search_button_text' );
 
 }
 
+function sp_search_button_text( $text ) {
+	return esc_attr( 'Go' );
+}
+function sp_search_text( $text ) {
+	return esc_attr( 'Search my blog...' );
+}
 
 
 //Child Theme Functions Go Here
@@ -103,7 +102,7 @@ function genesischild_scripts_styles() {
 	//wp_enqueue_style( 'dashicons' ); //Uncomment if DashIcons required in front end
 }
 
-//IE Conditional Styles - gotta load last
+// IE Conditional Styles - gotta load last
 function genesischild_ie_styles() {
 	wp_register_style( 'ie8', get_stylesheet_directory_uri() . '/css/ie8.css' );//target IE8 and Lower
 	$GLOBALS['wp_styles']->add_data( 'ie8', 'conditional', 'lte IE 8' );
@@ -114,8 +113,8 @@ function genesischild_ie_styles() {
 	wp_enqueue_style( 'ieall' );
 }
 
-//Responsive Nav - adjust target currently set to .menu-primary and location currently set appear just after body tag - adjust to suit needs
-//Ref - https://github.com/ComputerWolf/SlickNav
+// Responsive Nav - adjust target currently set to .menu-primary and location currently set appear just after body tag - adjust to suit needs
+// Ref - https://github.com/ComputerWolf/SlickNav
 function genesischild_responsive_scripts() {
 
 		wp_register_style ( 'slicknavcss', '//cdn.jsdelivr.net/jquery.slicknav/0.1/slicknav.css','', '1', 'all' );
@@ -130,7 +129,7 @@ function genesischild_responsive_scripts() {
 //Backstretch for Custom Background Image
 
  function backstretch_background_scripts() {
-	//* Load scripts only if custom background is being used
+	// Load scripts only if custom background is being used
 	if ( ! get_background_image() )
 		return;
 
@@ -173,7 +172,7 @@ function genesischild_extra_widgets() {
 		'before_widget' => '<div class="first one-third homeleft">',
 		'after_widget' => '</div>',
 	) );
-		//
+	//
 	genesis_register_sidebar( array(
 		'id'          => 'home-middle-2',
 		'name'        => __( 'Alt Main Content 2 Top Middle 33%', 'genesischild' ),
@@ -181,7 +180,7 @@ function genesischild_extra_widgets() {
 		'before_widget' => '<div class="one-third homemiddle">',
 		'after_widget' => '</div>',
 	) );
-		//
+	//
 	genesis_register_sidebar( array(
 		'id'          => 'home-right-3',
 		'name'        => __( 'Alt Main Content 3 Top Right 33%', 'genesischild' ),
@@ -339,11 +338,11 @@ function themeprefix_modify_genesis_do_nav( $nav_output, $nav, $args ) {
 //Allow PHP to run in Widgets
 function genesis_execute_php_widgets( $html ) {
 	if ( strpos( $html, "<" . "?php" ) !==false ) {
-	ob_start();
-	eval( "?".">".$html );
-	$html=ob_get_contents();
-	ob_end_clean();
-		}
+		ob_start();
+		eval( "?".">".$html );
+		$html=ob_get_contents();
+		ob_end_clean();
+	}
 	return $html;
 }
 
