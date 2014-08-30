@@ -1,5 +1,4 @@
 <?php
-
 /************************************************
 * @package WayneBrettMetroChildTheme
 <<<<<<< HEAD
@@ -26,6 +25,21 @@ function genesischild_theme_setup() {
 	add_theme_support( 'genesis-footer-widgets', 3 );
 	add_theme_support( 'custom-background' );
 	add_theme_support( 'genesis-after-entry-widget-area' );
+
+	//* Add support for post formats
+	add_theme_support( 'post-formats', array(
+		'aside',
+		'audio',
+		'chat',
+		'gallery',
+		'image',
+		'link',
+		'quote',
+		'status',
+		'video'
+	) );
+	//* Add support for post format images
+	add_theme_support( 'genesis-post-format-images' );
 	//add_theme_support( 'genesis-connect-woocommerce' ); //Uncomment if using woocommerce
 
 	remove_action( 'genesis_meta', 'genesis_load_stylesheet' );
