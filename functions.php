@@ -65,7 +65,7 @@ function sp_search_button_text( $text ) {
 	return esc_attr( 'Go' );
 }
 function sp_search_text( $text ) {
-	return esc_attr( 'Search my blog...' );
+	return esc_attr( "Search Wayne's blog..." );
 }
 
 
@@ -79,15 +79,15 @@ function sp_breadcrumb_args( $args ) {
 	$args['heirarchial_attachments'] = true; // Genesis 1.5 and later
 	$args['heirarchial_categories'] = true; // Genesis 1.5 and later
 	$args['display'] = true;
-	$args['labels']['prefix'] = 'You are here: ';
-	$args['labels']['author'] = 'Archives for ';
-	$args['labels']['category'] = 'Archives for '; // Genesis 1.6 and later
-	$args['labels']['tag'] = 'Archives for ';
-	$args['labels']['date'] = 'Archives for ';
-	$args['labels']['search'] = 'Search for ';
-	$args['labels']['tax'] = 'Archives for ';
-	$args['labels']['post_type'] = 'Archives for ';
-	$args['labels']['404'] = 'Not found: '; // Genesis 1.5 and later
+	$args['labels']['prefix'] = '<span class="breadcrumbs-pre">You are here: </span>';
+	$args['labels']['author'] = '<span class="breadcrumbs-pre">Archives for </span>';
+	$args['labels']['category'] = '<span class="breadcrumbs-pre">Archives for </span>'; // Genesis 1.6 and later
+	$args['labels']['tag'] = '<span class="breadcrumbs-pre">Archives for </span>';
+	$args['labels']['date'] = '<span class="breadcrumbs-pre">Archives for </span>';
+	$args['labels']['search'] = '<span class="breadcrumbs-pre">Search for </span>';
+	$args['labels']['tax'] = '<span class="breadcrumbs-pre">Archives for </span>';
+	$args['labels']['post_type'] = '<span class="breadcrumbs-pre">Archives for </span>';
+	$args['labels']['404'] = '<span class="breadcrumbs-pre">Not found: </span>'; // Genesis 1.5 and later
 return $args;
 }
 //Script-tac-ulous -> All the Scripts and Styles Registered and Enqueued, scripts first - then styles
