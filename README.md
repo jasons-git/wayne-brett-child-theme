@@ -24,8 +24,6 @@ This Genesis child theme is declaring support for HTML5, it is responsive and ha
 * Footer Widget Header
 * Footer Widgets 1, 2, 3
 * Footer
-* Post Footer Left
-* Post Footer Right
 
 **Home Page**
 The Home Page has been widgetised and the default Genesis loop has been removed, so any content entered in the visual editor for the home page will not be displayed.
