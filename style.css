@@ -923,7 +923,7 @@ img.alignright,
 .header-image .site-title > a {
 	background: url(images/logo.png) no-repeat left;
 	float: left;
-	min-height: 60px;
+	min-height: 80px;
 	width: 100%;
 }
 
