@@ -1753,6 +1753,8 @@ aside.widget-area.header-widget-area {
 
 	.slicknav_menu {
 		display:block;
+		position:fixed;
+    	width:100%;
 	}
 	.slicknav_menu .slicknav_menutxt {
     display: none;
@@ -1772,6 +1774,9 @@ aside.widget-area.header-widget-area {
 	    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 	    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 	    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+	}
+	div.site-container{
+		padding-top:45px;
 	}
 }
 
