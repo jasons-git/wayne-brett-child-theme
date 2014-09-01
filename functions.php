@@ -60,35 +60,33 @@ function genesischild_theme_setup() {
 	add_filter( 'genesis_search_button_text', 'sp_search_button_text' );
 
 }
-
+// SEARCH BUTTON TEXT AND SEARCH TEXT
 function sp_search_button_text( $text ) {
 	return esc_attr( 'Go' );
 }
 function sp_search_text( $text ) {
 	return esc_attr( "Search Wayne's blog..." );
 }
-
-
 //Child Theme Functions Go Here
 function sp_breadcrumb_args( $args ) {
-	$args['home'] = 'Home';
-	$args['sep'] = ' / ';
-	$args['list_sep'] = ', '; // Genesis 1.5 and later
-	$args['prefix'] = '<div class="breadcrumb">';
-	$args['suffix'] = '</div>';
-	$args['heirarchial_attachments'] = true; // Genesis 1.5 and later
-	$args['heirarchial_categories'] = true; // Genesis 1.5 and later
-	$args['display'] = true;
-	$args['labels']['prefix'] = '<span class="breadcrumbs-pre">You are here: </span>';
-	$args['labels']['author'] = '<span class="breadcrumbs-pre">Archives for </span>';
-	$args['labels']['category'] = '<span class="breadcrumbs-pre">Archives for </span>'; // Genesis 1.6 and later
-	$args['labels']['tag'] = '<span class="breadcrumbs-pre">Archives for </span>';
-	$args['labels']['date'] = '<span class="breadcrumbs-pre">Archives for </span>';
-	$args['labels']['search'] = '<span class="breadcrumbs-pre">Search for </span>';
-	$args['labels']['tax'] = '<span class="breadcrumbs-pre">Archives for </span>';
-	$args['labels']['post_type'] = '<span class="breadcrumbs-pre">Archives for </span>';
-	$args['labels']['404'] = '<span class="breadcrumbs-pre">Not found: </span>'; // Genesis 1.5 and later
-return $args;
+		$args['home'] = 'Home';
+		$args['sep'] = ' / ';
+		$args['list_sep'] = ', '; // Genesis 1.5 and later
+		$args['prefix'] = '<div class="breadcrumb">';
+		$args['suffix'] = '</div>';
+		$args['heirarchial_attachments'] = true; // Genesis 1.5 and later
+		$args['heirarchial_categories'] = true; // Genesis 1.5 and later
+		$args['display'] = true;
+		$args['labels']['prefix'] = '<span class="breadcrumbs-pre">You are here: </span>';
+		$args['labels']['author'] = '<span class="breadcrumbs-pre">Archives for </span>';
+		$args['labels']['category'] = '<span class="breadcrumbs-pre">Archives for </span>'; // Genesis 1.6 and later
+		$args['labels']['tag'] = '<span class="breadcrumbs-pre">Archives for </span>';
+		$args['labels']['date'] = '<span class="breadcrumbs-pre">Archives for </span>';
+		$args['labels']['search'] = '<span class="breadcrumbs-pre">Search for </span>';
+		$args['labels']['tax'] = '<span class="breadcrumbs-pre">Archives for </span>';
+		$args['labels']['post_type'] = '<span class="breadcrumbs-pre">Archives for </span>';
+		$args['labels']['404'] = '<span class="breadcrumbs-pre">Not found: </span>'; // Genesis 1.5 and later
+	return $args;
 }
 //Script-tac-ulous -> All the Scripts and Styles Registered and Enqueued, scripts first - then styles
 function genesischild_scripts_styles() {
@@ -99,7 +97,6 @@ function genesischild_scripts_styles() {
 	wp_enqueue_style( 'fontawesome' );
 	//wp_enqueue_style( 'dashicons' ); //Uncomment if DashIcons required in front end
 }
-
 // IE Conditional Styles - gotta load last
 function genesischild_ie_styles() {
 	wp_register_style( 'ie8', get_stylesheet_directory_uri() . '/css/ie8.css' );//target IE8 and Lower
@@ -115,8 +112,8 @@ function genesischild_ie_styles() {
 // Ref - https://github.com/ComputerWolf/SlickNav
 function genesischild_responsive_scripts() {
 
-		wp_register_style ( 'slicknavcss', '//cdn.jsdelivr.net/jquery.slicknav/0.1/slicknav.css','', '1', 'all' );
-		wp_register_script ( 'slicknav', '//cdn.jsdelivr.net/jquery.slicknav/0.1/jquery.slicknav.min.js', array( 'jquery' ), '1',true );
+		wp_register_style ( 'slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav.css','', '1', 'all' );
+		wp_register_script ( 'slicknav', get_stylesheet_directory_uri() . '/js/jquery.slicknav.min.js', array( 'jquery' ), '1',true );
 		wp_register_script ( 'slicknav-initialise', get_stylesheet_directory_uri() . '/js/slicknav-initialise.js', array( 'jquery', 'slicknav' ), '1', true );
 
 		wp_enqueue_style( 'slicknavcss' );
