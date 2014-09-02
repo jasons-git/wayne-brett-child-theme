@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){e("body").backstretch([BackStretchImage.src],{duration:3e3,fade:550})});

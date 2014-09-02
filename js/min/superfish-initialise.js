@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){jQuery("nav ul").superfish({delay:1e3,animation:{opacity:"show",height:"show"},speed:"fast",autoArrows:!1})});

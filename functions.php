@@ -313,7 +313,7 @@ function genesischild_before_entry_widget() {
 //Move Primary Navigation to Header Right without wrap
 function themeprefix_modify_genesis_do_nav( $nav_output, $nav, $args ) {
 
-	$class = 'menu genesis-nav-menu menu-primary';
+	$class = 'menu genesis-nav-menu menu-primary sf-menu';
 	if ( genesis_superfish_enabled() )
 		$class .= ' js-superfish';
 
