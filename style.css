@@ -166,11 +166,11 @@ input[type="submit"],
 textarea:focus,
 .button,
 .gallery img {
-	-webkit-transition: all 0.1s ease-in-out;
-	-moz-transition:    all 0.1s ease-in-out;
-	-ms-transition:     all 0.1s ease-in-out;
-	-o-transition:      all 0.1s ease-in-out;
-	transition:         all 0.1s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition:    all 0.2s ease-in-out;
+	-ms-transition:     all 0.2s ease-in-out;
+	-o-transition:      all 0.2s ease-in-out;
+	transition:         all 0.2s ease-in-out;
 }
 
 ::-moz-selection {
@@ -195,6 +195,7 @@ a:hover {
 p {
 	margin: 0 0 20px;
 	padding: 0;
+	line-height:1.5;
 }
 
 ol,
@@ -410,7 +411,7 @@ input[type="submit"],
 .footer-widgets input[type="reset"],
 .footer-widgets input[type="submit"],
 .footer-widgets .button {
-	background-color: #e5554e;
+	background-color: #ED581D;
 	color: #fcfcfc;
 }
 
@@ -1187,15 +1188,16 @@ li.comment {
 /* # Footer Widgets
 ---------------------------------------------------------------------------------------------------- */
 
-.footer-widgets {
+.footer-widgets, .site-footer {
+	color: #FCFCFC;
 	background-color: #3D3D3D;
 	clear: both;
-	padding-top: 40px;
+	padding: 40px 0;
+	font-size: 16px;
 }
 
-.footer-widgets,
 .footer-widgets a {
-	color: #999;
+	color: #ED581D;
 }
 
 .footer-widgets input {
@@ -1244,13 +1246,6 @@ li.comment {
 /* # Site Footer
 ---------------------------------------------------------------------------------------------------- */
 
-.site-footer {
-	background-color: #fcfcfc;
-	font-size: 16px;
-	line-height: 1;
-	padding: 40px 0;
-	text-align: center;
-}
 
 .site-footer p {
 	margin-bottom: 0;
@@ -1446,7 +1441,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"],.button,
 	text-align: center;
 	/* height: 144px; */
 	/* width: 154px; */
-	font-size: 1.4em;
+	font-size: 1.2em;
 	padding-top: 110px;
 }
 
@@ -1535,9 +1530,6 @@ ul.menu-primary li li li li li.sfHover ul {
 	content:' \f107';
 	font-family: 'FontAwesome';
 }
-
-
-
 /*----------------------------------------------Hero---------------------------------------------------------------------*
 /
 /
