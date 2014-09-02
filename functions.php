@@ -37,6 +37,7 @@ function genesischild_theme_setup() {
 	add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 998 ); //Main style sheet 2nd last
 	add_action( 'wp_enqueue_scripts', 'genesischild_scripts_styles', 997 ); //All the rest load before
 	add_action( 'wp_enqueue_scripts', 'backstretch_background_scripts' );
+	add_action( 'wp_enqueue_scripts', 'genesischild_superfish_scripts' );
 	add_action( 'wp_enqueue_scripts', 'genesischild_responsive_scripts' );
 	add_action( 'widgets_init', 'genesischild_extra_widgets' );
 	add_action( 'genesis_before_loop','genesischild_before_entry_widget' );
@@ -107,7 +108,20 @@ function genesischild_ie_styles() {
 	wp_enqueue_style( 'ie8' );
 	wp_enqueue_style( 'ieall' );
 }
+// Desktop Nave - add sf-menu class name
+// Ref - https://github.com/joeldbirch/superfish
+function genesischild_superfish_scripts() {
 
+		wp_register_style ( 'superfishcss', get_stylesheet_directory_uri() . '/css/superfish.css','', '1', 'all' );
+		wp_register_script ( 'hoverintent', get_stylesheet_directory_uri() . '/js/hoverIntent.js', array( 'jquery' ), '1',true );
+		wp_register_script ( 'superfish', get_stylesheet_directory_uri() . '/js/superfish.js', array( 'jquery'), '1', true );
+		wp_register_script ( 'superfish-initialise', get_stylesheet_directory_uri() . '/js/superfish-initialise.js', array( 'jquery', 'superfish' ), '1', true );
+
+		wp_enqueue_style( 'superfishcss' );
+		wp_enqueue_script( 'hoverintent' );
+		wp_enqueue_script( 'superfish' );
+		wp_enqueue_script( 'superfish-initialise' );
+}
 // Responsive Nav - adjust target currently set to .menu-primary and location currently set appear just after body tag - adjust to suit needs
 // Ref - https://github.com/ComputerWolf/SlickNav
 function genesischild_responsive_scripts() {
