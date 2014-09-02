@@ -36,12 +36,14 @@ function genesischild_theme_setup() {
 	add_action( 'wp_enqueue_scripts', 'genesischild_ie_styles', 999 );	//IE conditional styles load last
 	add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 998 ); //Main style sheet 2nd last
 	add_action( 'wp_enqueue_scripts', 'genesischild_scripts_styles', 997 ); //All the rest load before
+	add_action( 'custom_disable_superfish', 'sp_disable_superfish' );
 	add_action( 'wp_enqueue_scripts', 'backstretch_background_scripts' );
 	add_action( 'wp_enqueue_scripts', 'genesischild_superfish_scripts' );
 	add_action( 'wp_enqueue_scripts', 'genesischild_responsive_scripts' );
 	add_action( 'widgets_init', 'genesischild_extra_widgets' );
 	add_action( 'genesis_before_loop','genesischild_before_entry_widget' );
 	add_action( 'genesis_footer','genesischild_footer_widget' );
+	add_action( 'genesis_after_footer','genesischild_postfooter_widget' );
 	add_action( 'genesis_before_header','genesischild_preheader_widget' );
 	add_action( 'genesis_header_right','genesis_do_nav' );
 	//add_action( 'genesis_before', 'likebox_facebook_script' ); //Uncomment if using facebook likebox function below
@@ -60,6 +62,12 @@ function genesischild_theme_setup() {
 	// Customize search form input button text
 	add_filter( 'genesis_search_button_text', 'sp_search_button_text' );
 
+}
+//* Disable the superfish script
+
+function sp_disable_superfish() {
+	wp_deregister_script( 'superfish' );
+	wp_deregister_script( 'superfish-args' );
 }
 // SEARCH BUTTON TEXT AND SEARCH TEXT
 function sp_search_button_text( $text ) {
@@ -260,6 +268,27 @@ function genesischild_extra_widgets() {
 		'before_widget' => '<div class="before-entry">',
 		'after_widget' => '</div>',
 	) );
+	genesis_register_sidebar( array(
+		'id'          => 'footercontent',
+		'name'        => __( 'Footer', 'genesischild' ),
+		'description' => __( 'This is the general footer area', 'genesischild' ),
+		'before_widget' => '<div class="footercontent">',
+		'after_widget' => '</div>',
+	) );
+	genesis_register_sidebar( array(
+		'id'          => 'postfooterleft',
+		'name'        => __( 'Post Footer Left', 'genesischild' ),
+		'description' => __( 'This is the post footer left area', 'genesischild' ),
+		'before_widget' => '<div class="first one-half postfooterleft">',
+		'after_widget' => '</div>',
+	) );
+	genesis_register_sidebar( array(
+		'id'          => 'postfooterright',
+		'name'        => __( 'Post Footer Right', 'genesischild' ),
+		'description' => __( 'This is the post footer right area', 'genesischild' ),
+		'before_widget' => '<div class="one-half postfooterright">',
+		'after_widget' => '</div>',
+	) );
 }
 
 //Position the PreHeader Area
@@ -302,7 +331,20 @@ function genesischild_homecontent_widget() {
 	genesis_widget_area ( 'home-bottom-5-6' );
 	echo '</div></section>';
 }
+//Position the Footer Area
+function genesischild_footer_widget() {
+	genesis_widget_area ( 'footercontent', array(
+	'before' => '<div class="footercontainer">',
+	'after' => '</div>',));
+}
 
+//Position the PostFooter Area
+function genesischild_postfooter_widget() {
+	echo '<div class="postfootercontainer"><div class="wrap">';
+	genesis_widget_area ( 'postfooterleft' );
+	genesis_widget_area ( 'postfooterright' );
+	echo '</div></div>';
+}
 //Position the Before Content Area
 function genesischild_before_entry_widget() {
 	if( is_single() ) {
@@ -314,8 +356,6 @@ function genesischild_before_entry_widget() {
 function themeprefix_modify_genesis_do_nav( $nav_output, $nav, $args ) {
 
 	$class = 'menu genesis-nav-menu menu-primary sf-menu';
-	if ( genesis_superfish_enabled() )
-		$class .= ' js-superfish';
 
 	$args = array(
 		'theme_location' => 'primary',
