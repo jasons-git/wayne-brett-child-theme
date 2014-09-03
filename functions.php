@@ -1,11 +1,7 @@
 <?php
 /************************************************
-* @package WayneBrettMetroChildTheme
-<<<<<<< HEAD
+* @package Wayne Brett Metro Child Theme
 * @authors  Nate Lewis & Jason Lewis
-=======
-* @author  Nate Lewis & Jason Lewis
->>>>>>> 55d720d78f49c4c89c8eb977dcb56af349b3e52b
 * @license GPL-2.0+
 * @link    http://practicalit.info/
 ************************************************/
@@ -33,9 +29,12 @@ function genesischild_theme_setup() {
 	remove_action( 'genesis_footer', 'genesis_do_footer' );
 	remove_action( 'genesis_after_header','genesis_do_nav' );
 
-	add_action( 'wp_enqueue_scripts', 'genesischild_ie_styles', 999 );	//IE conditional styles load last
-	add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 998 ); //Main style sheet 2nd last
-	add_action( 'wp_enqueue_scripts', 'genesischild_scripts_styles', 997 ); //All the rest load before
+	//IE conditional styles load last
+	add_action( 'wp_enqueue_scripts', 'genesischild_ie_styles', 999 );
+	//Main style sheet 2nd last
+	add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 998 );
+	//All the rest load before
+	add_action( 'wp_enqueue_scripts', 'genesischild_scripts_styles', 997 );
 	add_action( 'custom_disable_superfish', 'sp_disable_superfish' );
 	add_action( 'wp_enqueue_scripts', 'backstretch_background_scripts' );
 	add_action( 'wp_enqueue_scripts', 'genesischild_superfish_scripts' );
@@ -46,6 +45,7 @@ function genesischild_theme_setup() {
 	add_action( 'genesis_after_footer','genesischild_postfooter_widget' );
 	add_action( 'genesis_before_header','genesischild_preheader_widget' );
 	add_action( 'genesis_header_right','genesis_do_nav' );
+
 	//add_action( 'genesis_before', 'likebox_facebook_script' ); //Uncomment if using facebook likebox function below
 
 	add_filter( 'widget_text', 'do_shortcode' );
@@ -61,41 +61,16 @@ function genesischild_theme_setup() {
 	add_filter( 'genesis_search_text', 'sp_search_text' );
 	// Customize search form input button text
 	add_filter( 'genesis_search_button_text', 'sp_search_button_text' );
-
+	//* Customize the post meta function
+	add_filter( 'genesis_post_meta', 'sp_post_meta_filter' );
 }
-//* Disable the superfish script
 
+///////////////////////////////////////
+//Child Theme Functions Go Here
+//* Disable the superfish script
 function sp_disable_superfish() {
 	wp_deregister_script( 'superfish' );
 	wp_deregister_script( 'superfish-args' );
-}
-// SEARCH BUTTON TEXT AND SEARCH TEXT
-function sp_search_button_text( $text ) {
-	return esc_attr( 'Go' );
-}
-function sp_search_text( $text ) {
-	return esc_attr( "Search Wayne's blog..." );
-}
-//Child Theme Functions Go Here
-function sp_breadcrumb_args( $args ) {
-		$args['home'] = 'Home';
-		$args['sep'] = ' / ';
-		$args['list_sep'] = ', '; // Genesis 1.5 and later
-		$args['prefix'] = '<div class="breadcrumb">';
-		$args['suffix'] = '</div>';
-		$args['heirarchial_attachments'] = true; // Genesis 1.5 and later
-		$args['heirarchial_categories'] = true; // Genesis 1.5 and later
-		$args['display'] = true;
-		$args['labels']['prefix'] = '<span class="breadcrumbs-pre">You are here: </span>';
-		$args['labels']['author'] = '<span class="breadcrumbs-pre">Archives for </span>';
-		$args['labels']['category'] = '<span class="breadcrumbs-pre">Archives for </span>'; // Genesis 1.6 and later
-		$args['labels']['tag'] = '<span class="breadcrumbs-pre">Archives for </span>';
-		$args['labels']['date'] = '<span class="breadcrumbs-pre">Archives for </span>';
-		$args['labels']['search'] = '<span class="breadcrumbs-pre">Search for </span>';
-		$args['labels']['tax'] = '<span class="breadcrumbs-pre">Archives for </span>';
-		$args['labels']['post_type'] = '<span class="breadcrumbs-pre">Archives for </span>';
-		$args['labels']['404'] = '<span class="breadcrumbs-pre">Not found: </span>'; // Genesis 1.5 and later
-	return $args;
 }
 //Script-tac-ulous -> All the Scripts and Styles Registered and Enqueued, scripts first - then styles
 function genesischild_scripts_styles() {
@@ -116,8 +91,7 @@ function genesischild_ie_styles() {
 	wp_enqueue_style( 'ie8' );
 	wp_enqueue_style( 'ieall' );
 }
-// Desktop Nave - add sf-menu class name
-// Ref - https://github.com/joeldbirch/superfish
+// Desktop Nave - add sf-menu class name // Ref - https://github.com/joeldbirch/superfish
 function genesischild_superfish_scripts() {
 
 		wp_register_style ( 'superfishcss', get_stylesheet_directory_uri() . '/css/superfish.css','', '1', 'all' );
@@ -130,8 +104,7 @@ function genesischild_superfish_scripts() {
 		wp_enqueue_script( 'superfish' );
 		wp_enqueue_script( 'superfish-initialise' );
 }
-// Responsive Nav - adjust target currently set to .menu-primary and location currently set appear just after body tag - adjust to suit needs
-// Ref - https://github.com/ComputerWolf/SlickNav
+// Responsive Nav - adjust target currently set to .menu-primary and location currently set appear just after body tag // Ref - https://github.com/ComputerWolf/SlickNav
 function genesischild_responsive_scripts() {
 
 		wp_register_style ( 'slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav.css','', '1', 'all' );
@@ -144,8 +117,7 @@ function genesischild_responsive_scripts() {
 }
 
 //Backstretch for Custom Background Image
-
- function backstretch_background_scripts() {
+function backstretch_background_scripts() {
 	// Load scripts only if custom background is being used
 	if ( ! get_background_image() )
 		return;
@@ -155,6 +127,36 @@ function genesischild_responsive_scripts() {
 	wp_localize_script( 'backstretch-image', 'BackStretchImage', array( 'src' => get_background_image() ) );
 }
 
+// Breadcrumb style
+
+function sp_breadcrumb_args( $args ) {
+		$args['home'] = 'Home';
+		$args['sep'] = ' / ';
+		$args['list_sep'] = ', '; // Genesis 1.5 and later
+		$args['prefix'] = '<div class="breadcrumb">';
+		$args['suffix'] = '</div>';
+		$args['heirarchial_attachments'] = true; // Genesis 1.5 and later
+		$args['heirarchial_categories'] = true; // Genesis 1.5 and later
+		$args['display'] = true;
+		$args['labels']['prefix'] = '<span class="breadcrumbs-pre">You are here: </span>';
+		$args['labels']['author'] = '<span class="breadcrumbs-pre">Archives for: </span>';
+		$args['labels']['category'] = '<span class="breadcrumbs-pre">Archives for: </span>'; // Genesis 1.6 and later
+		$args['labels']['tag'] = '<span class="breadcrumbs-pre">Archives for: </span>';
+		$args['labels']['date'] = '<span class="breadcrumbs-pre">Archives for: </span>';
+		$args['labels']['search'] = '<span class="breadcrumbs-pre">Search for: </span>';
+		$args['labels']['tax'] = '<span class="breadcrumbs-pre">Archives for: </span>';
+		$args['labels']['post_type'] = '<span class="breadcrumbs-pre">Archives for: </span>';
+		$args['labels']['404'] = '<span class="breadcrumbs-pre">Not found: </span>'; // Genesis 1.5 and later
+	return $args;
+}
+// SEARCH BUTTON TEXT AND SEARCH TEXT
+function sp_search_button_text( $text ) {
+	return esc_attr( 'Go' );
+}
+// SEARCH BUTTON TEXT AND SEARCH TEXT
+function sp_search_text( $text ) {
+	return esc_attr( "Search Wayne's blog..." );
+}
 //Add in new Widget areas
 function genesischild_extra_widgets() {
 	// PREHEADER LEFT WIDGET
@@ -345,6 +347,7 @@ function genesischild_postfooter_widget() {
 	genesis_widget_area ( 'postfooterright' );
 	echo '</div></div>';
 }
+
 //Position the Before Content Area
 function genesischild_before_entry_widget() {
 	if( is_single() ) {
@@ -400,10 +403,10 @@ function genesischild_read_more_link() {
 	return '... <a href="' . get_permalink() . '" class="more-link" title="Read More">Read More</a>';
 }
 
-//Remove Author Name on Post Meta
+// post info
 function genesischild_post_info( $post_info ) {
 	if ( !is_page() ) {
-	$post_info = '[post_date] [post_comments] [post_edit]';
+	$post_info = '[post_date] by [post_author_posts_link] [post_comments] [post_edit]';
 	return $post_info;
 	}
 }
@@ -420,6 +423,13 @@ function genesischild_remove_comment_form_allowed_tags( $defaults ) {
 	return $defaults;
 }
 
+//* Customize the post meta function
+function sp_post_meta_filter($post_meta) {
+	if ( !is_page() ) {
+		$post_meta = '[post_categories before="Categories: "] [post_tags before="Tags: "]';
+		return $post_meta;
+	}
+}
 /*Function for Facebook HTML5 Script needs to go after body - escape all inner double quotes or use alternate single quotes
 function likebox_facebook_script () {
 echo "";

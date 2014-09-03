@@ -994,7 +994,7 @@ img.alignright,
 }
 
 /* # Content Area
----------------------------------------------------------------------------------------------------- */
+-------------------------------------------- */
 
 /* ## Entries
 --------------------------------------------- */
@@ -1161,7 +1161,7 @@ li.comment {
 
 
 /* # Sidebars
----------------------------------------------------------------------------------------------------- */
+----------------------------------------------- */
 
 .sidebar {
 	font-size: 16px;
@@ -1186,16 +1186,24 @@ li.comment {
 
 
 /* # Footer Widgets
----------------------------------------------------------------------------------------------------- */
+--------------------------------------- */
 
-.footer-widgets, .site-footer {
+.footercontainer {
+}
+
+.footer-widgets,
+.site-footer,
+.postfootercontainer {
 	color: #FCFCFC;
 	background-color: #3D3D3D;
 	clear: both;
-	padding: 40px 0;
-	font-size: 16px;
+	padding: 10px;
+	margin: 0 auto;  max-width: 1400px;
 }
-
+.footer-widgets {
+	border-bottom: 2px solid transparent;
+	margin-bottom: 2px;
+}
 .footer-widgets a {
 	color: #ED581D;
 }
@@ -1216,7 +1224,6 @@ li.comment {
 }
 
 .footer-widgets .widget {
-	margin-bottom: 40px;
 }
 
 .footer-widgets p:last-child {
@@ -1226,20 +1233,14 @@ li.comment {
 .footer-widgets-1,
 .footer-widgets-2,
 .footer-widgets-3 {
-	width: 340px;
+	width: 31.623931623931625%;
+	float: left;
+	margin-left: 2.564102564102564%;
 }
 
 .footer-widgets-1 {
-	margin-right: 60px;
-}
-
-.footer-widgets-1,
-.footer-widgets-2 {
-	float: left;
-}
-
-.footer-widgets-3 {
-	float: right;
+	clear: both;
+	margin-left: 0;
 }
 
 
@@ -1366,7 +1367,33 @@ button, input[type="button"], input[type="reset"], input[type="submit"],.button,
   -moz-box-shadow:inset 0 -1px 0 0 rgba(0,0,0,0.3), 0 6px 0 -3px rgba(0,0,0,0.15), 0 1000px 0 rgba(255,255,255,0.2) !important;
   box-shadow:inset 0 -1px 0 0 rgba(0,0,0,0.3), 0 6px 0 -3px rgba(0,0,0,0.15), inset 0 1000px 0 rgba(255,255,255,0.2) !important;
 }
+button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover,.button:hover, a.button:hover {
+	border: 0 !important;
+	background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 100%) !important;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.01))) !important;
+	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 100%) !important;
+	background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 100%) !important;
+	background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.01) 100%) !important;
+	line-height: 18px !important;
+	padding: 7px 10px !important;
+	-webkit-transition: background-color 0.3s, -webkit-box-shadow 0.3s;
+	-moz-transition: background-color 0.3s, -moz-box-shadow 0.3s;
+	-ms-transition: background-color 0.3s, box-shadow 0.3s;
+	-o-transition: background-color 0.3s, box-shadow 0.3s;
+	transition: background-color 0.3s, box-shadow 0.3s;
+	text-decoration: none !important;
 
+	-webkit-box-shadow:inset 0 -1px 0 0 rgba(0,0,0,0.3), 0 6px 0 -3px rgba(0,0,0,0.015) !important;
+	-moz-box-shadow:inset 0 -1px 0 0 rgba(0,0,0,0.3), 0 6px 0 -3px rgba(0,0,0,0.015) !important;
+	box-shadow:inset 0 -1px 0 0 rgba(0,0,0,0.3), 0 6px 0 -3px rgba(0,0,0,0.015) !important;
+
+	font-size:100% !important;
+	font-weight:normal !important;
+	text-shadow:none !important;
+	-webkit-border-radius:0 !important;
+	-moz-border-radius:0 !important;
+	border-radius:0 !important;
+}
 /*----------------------------------------------PreHeader----------------------------------------------------------------*
 /
 /
@@ -1441,7 +1468,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"],.button,
 	text-align: center;
 	/* height: 144px; */
 	/* width: 154px; */
-	font-size: 1.2em;
+	font-size: 1.4em;
 	padding-top: 110px;
 }
 
@@ -1583,16 +1610,45 @@ ul.menu-primary li li li li li.sfHover ul {
 
 
 
-/*----------------------------------------------Footer-------------------------------------------------------------------*
-/
-/
-------------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-
+/*----------------------------------------------Footer-------------------------------------------------------------------*/
+div.footercontainer div.footercontent h4 {
+		display:none;
+}
+div.footercontainer div.footercontent ul {
+    display: block;
+	margin-top: 15px;
+	margin-right:0px;
+	margin-bottom:15px;
+    margin-left: 18%;
+}
+div.footercontainer div.footercontent ul li {
+    display: inline-block;
+    width:auto;
+	margin-left:1%;
+}
+div.footercontainer div.footercontent ul li a {
+		color: #ED581D;
+}
+div.footercontainer div.footercontent ul li a:hover {
+	color: #FCFCFC;
+}
+.pit-wrap, .wb-wrap {
+    height: 40px;
+}
+p.created-by, p.copyright {
+    line-height: 40px;
+	font-size:16px;
+	text-align:left;
+}
+a.wb-com, a.pit-logo {
+    text-shadow: 1px 1px 1px #FCFCFC;
+    font-size:18px
+}
+a.wb-com:hover, a.pit-logo:hover {
+    color: #FCFCFC;
+    text-shadow: 1px 1px 1px #ED581D;
+}
+*/
 /*----------------------------------------------SideBar-------------------------------------------------------------------*
 /
 /
