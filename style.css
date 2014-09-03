@@ -1648,7 +1648,7 @@ a.wb-com:hover, a.pit-logo:hover {
     color: #FCFCFC;
     text-shadow: 1px 1px 1px #ED581D;
 }
-*/
+
 /*----------------------------------------------SideBar-------------------------------------------------------------------*
 /
 /
@@ -1684,7 +1684,9 @@ a.wb-com:hover, a.pit-logo:hover {
 }
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px) {
-
+	.slicknav_menu {
+		display:none;
+	}
 		nav#primary-nav {
 			width: 100%;
 		}
@@ -1712,6 +1714,9 @@ a.wb-com:hover, a.pit-logo:hover {
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
+	.slicknav_menu {
+		display:none;
+	}
 	.site-container {
 		padding: 5%;
 	}
@@ -1779,6 +1784,7 @@ a.wb-com:hover, a.pit-logo:hover {
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
+
 	/* .menu-primary is the original menu */
 	.menu-primary {
 		display:none;
@@ -1816,6 +1822,7 @@ a.wb-com:hover, a.pit-logo:hover {
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px) {
+
 	/* .menu-primary is the original menu */
 	.menu-primary {
 		display:none;

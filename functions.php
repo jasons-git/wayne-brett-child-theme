@@ -33,12 +33,12 @@ function genesischild_theme_setup() {
 	add_action( 'wp_enqueue_scripts', 'genesischild_ie_styles', 999 );
 	//Main style sheet 2nd last
 	add_action( 'wp_enqueue_scripts', 'genesis_enqueue_main_stylesheet', 998 );
+
+	add_action( 'wp_enqueue_scripts', 'genesischild_styles', 996 );
 	//All the rest load before
-	add_action( 'wp_enqueue_scripts', 'genesischild_scripts_styles', 997 );
+	add_action( 'wp_enqueue_scripts', 'genesischild_scripts', 997 );
 	add_action( 'custom_disable_superfish', 'sp_disable_superfish' );
 	add_action( 'wp_enqueue_scripts', 'backstretch_background_scripts' );
-	add_action( 'wp_enqueue_scripts', 'genesischild_superfish_scripts' );
-	add_action( 'wp_enqueue_scripts', 'genesischild_responsive_scripts' );
 	add_action( 'widgets_init', 'genesischild_extra_widgets' );
 	add_action( 'genesis_before_loop','genesischild_before_entry_widget' );
 	add_action( 'genesis_footer','genesischild_footer_widget' );
@@ -47,6 +47,7 @@ function genesischild_theme_setup() {
 	add_action( 'genesis_header_right','genesis_do_nav' );
 
 	//add_action( 'genesis_before', 'likebox_facebook_script' ); //Uncomment if using facebook likebox function below
+
 
 	add_filter( 'widget_text', 'do_shortcode' );
 	add_filter( 'widget_text','genesis_execute_php_widgets' );
@@ -63,6 +64,8 @@ function genesischild_theme_setup() {
 	add_filter( 'genesis_search_button_text', 'sp_search_button_text' );
 	//* Customize the post meta function
 	add_filter( 'genesis_post_meta', 'sp_post_meta_filter' );
+	//
+	add_filter( 'theme_page_templates', 'be_remove_genesis_page_templates' );
 }
 
 ///////////////////////////////////////
@@ -72,15 +75,7 @@ function sp_disable_superfish() {
 	wp_deregister_script( 'superfish' );
 	wp_deregister_script( 'superfish-args' );
 }
-//Script-tac-ulous -> All the Scripts and Styles Registered and Enqueued, scripts first - then styles
-function genesischild_scripts_styles() {
-	wp_register_script ( 'placeholder' , get_stylesheet_directory_uri() . '/js/placeholder.js', array( 'jquery' ), '1', true );
-	wp_register_style ( 'fontawesome' , '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css', '' , '4.1.0', 'all' );
 
-	wp_enqueue_script( 'placeholder' );//version 3.0.2
-	wp_enqueue_style( 'fontawesome' );
-	//wp_enqueue_style( 'dashicons' ); //Uncomment if DashIcons required in front end
-}
 // IE Conditional Styles - gotta load last
 function genesischild_ie_styles() {
 	wp_register_style( 'ie8', get_stylesheet_directory_uri() . '/css/ie8.css' );//target IE8 and Lower
@@ -91,29 +86,55 @@ function genesischild_ie_styles() {
 	wp_enqueue_style( 'ie8' );
 	wp_enqueue_style( 'ieall' );
 }
-// Desktop Nave - add sf-menu class name // Ref - https://github.com/joeldbirch/superfish
-function genesischild_superfish_scripts() {
 
-		wp_register_style ( 'superfishcss', get_stylesheet_directory_uri() . '/css/superfish.css','', '1', 'all' );
-		wp_register_script ( 'hoverintent', get_stylesheet_directory_uri() . '/js/hoverIntent.js', array( 'jquery' ), '1',true );
-		wp_register_script ( 'superfish', get_stylesheet_directory_uri() . '/js/superfish.js', array( 'jquery'), '1', true );
-		wp_register_script ( 'superfish-initialise', get_stylesheet_directory_uri() . '/js/superfish-initialise.js', array( 'jquery', 'superfish' ), '1', true );
 
-		wp_enqueue_style( 'superfishcss' );
-		wp_enqueue_script( 'hoverintent' );
-		wp_enqueue_script( 'superfish' );
-		wp_enqueue_script( 'superfish-initialise' );
+function genesischild_scripts(){
+	// jQuery UI path
+	wp_register_script ( 'jquery-ui', get_stylesheet_directory_uri() . '/js/min/jquery-ui.min.js', array( 'jquery' ), '1',true );
+	// Hoverintent path
+	wp_register_script ( 'hoverintent', get_stylesheet_directory_uri() . '/js/min/hoverIntent.js', array( 'jquery' ), '1',true );
+	// Superfish path
+	wp_register_script ( 'superfish', get_stylesheet_directory_uri() . '/js/min/superfish.js', array( 'jquery'), '1', true );
+	// Superfish initialise path
+	wp_register_script ( 'superfish-initialise', get_stylesheet_directory_uri() . '/js/min/superfish-initialise.js', array( 'jquery', 'superfish' ), '1', true );
+	// Slicknav path
+	wp_register_script ( 'slicknav', get_stylesheet_directory_uri() . '/js/min/jquery.slicknav.min.js', array( 'jquery' ), '1',true );
+	// Slicknav initialise path
+	wp_register_script ( 'slicknav-initialise', get_stylesheet_directory_uri() . '/js/min/slicknav-initialise.js', array( 'jquery', 'slicknav' ), '1', true );
+
+	// jQuery enqueue
+	wp_enqueue_script( 'jquery-min' );
+	// jQuery UI enqueue
+	wp_enqueue_script( 'jquery-ui' );
+	// Hoverintent enqueue
+	wp_enqueue_script( 'hoverintent' );
+	// Superfish enqueue
+	wp_enqueue_script( 'superfish' );
+	// Superfish initialise enqueue
+	wp_enqueue_script( 'superfish-initialise' );
+	// Slicknav enqueue
+	wp_enqueue_script( 'slicknav' );
+	// Slicknav initialise enqueue
+	wp_enqueue_script( 'slicknav-initialise' );
 }
-// Responsive Nav - adjust target currently set to .menu-primary and location currently set appear just after body tag // Ref - https://github.com/ComputerWolf/SlickNav
-function genesischild_responsive_scripts() {
 
-		wp_register_style ( 'slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav.css','', '1', 'all' );
-		wp_register_script ( 'slicknav', get_stylesheet_directory_uri() . '/js/jquery.slicknav.min.js', array( 'jquery' ), '1',true );
-		wp_register_script ( 'slicknav-initialise', get_stylesheet_directory_uri() . '/js/slicknav-initialise.js', array( 'jquery', 'slicknav' ), '1', true );
+function genesischild_styles(){
+	wp_register_style ( 'jquery-uicss', get_stylesheet_directory_uri() . '/css/jquery-ui.css','', '1', 'all' );
+	// 1
+	wp_register_style ( 'fontawesome' , '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css', '' , '4.1.0', 'all' );
+	// 2
+	wp_register_style ( 'superfishcss', get_stylesheet_directory_uri() . '/css/superfish.css','', '1', 'all' );
+	// 3
+	wp_register_style ( 'slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav.css','', '1', 'all' );
 
-		wp_enqueue_style( 'slicknavcss' );
-		wp_enqueue_script( 'slicknav' );
-		wp_enqueue_script( 'slicknav-initialise' );
+
+	wp_enqueue_style( 'jquery-uicss' );
+	// 1
+	wp_enqueue_style( 'fontawesome' );
+	// 2
+	wp_enqueue_style( 'superfishcss' );
+	// 3
+	wp_enqueue_style( 'slicknavcss' );
 }
 
 //Backstretch for Custom Background Image
@@ -122,13 +143,12 @@ function backstretch_background_scripts() {
 	if ( ! get_background_image() )
 		return;
 
-	wp_enqueue_script( 'backstretch', get_stylesheet_directory_uri() . '/js/backstretch.min.js', array( 'jquery' ), '2.0.4', true );
-	wp_enqueue_script( 'backstretch-image', get_stylesheet_directory_uri().'/js/backstretch-initialise.js' , array( 'jquery', 'backstretch' ), '1', true );
+	wp_enqueue_script( 'backstretch', get_stylesheet_directory_uri() . '/js/min/backstretch.min.js', array( 'jquery' ), '2.0.4', true );
+	wp_enqueue_script( 'backstretch-image', get_stylesheet_directory_uri().'/js/min/backstretch-initialise.js' , array( 'jquery', 'backstretch' ), '1', true );
 	wp_localize_script( 'backstretch-image', 'BackStretchImage', array( 'src' => get_background_image() ) );
 }
 
 // Breadcrumb style
-
 function sp_breadcrumb_args( $args ) {
 		$args['home'] = 'Home';
 		$args['sep'] = ' / ';
@@ -149,14 +169,17 @@ function sp_breadcrumb_args( $args ) {
 		$args['labels']['404'] = '<span class="breadcrumbs-pre">Not found: </span>'; // Genesis 1.5 and later
 	return $args;
 }
+
 // SEARCH BUTTON TEXT AND SEARCH TEXT
 function sp_search_button_text( $text ) {
 	return esc_attr( 'Go' );
 }
+
 // SEARCH BUTTON TEXT AND SEARCH TEXT
 function sp_search_text( $text ) {
 	return esc_attr( "Search Wayne's blog..." );
 }
+
 //Add in new Widget areas
 function genesischild_extra_widgets() {
 	// PREHEADER LEFT WIDGET
@@ -308,7 +331,7 @@ function genesischild_hero_widget() {
 	'after' => '</section>',));
 }
 
-//Position the Home Area
+// Position the Home Area
 function genesischild_homecontent_widget() {
 	echo '<section class="home-module-container"><div class="wrap">';
 	//Position the Home Area 33%
@@ -333,14 +356,14 @@ function genesischild_homecontent_widget() {
 	genesis_widget_area ( 'home-bottom-5-6' );
 	echo '</div></section>';
 }
-//Position the Footer Area
+// Position the Footer Area
 function genesischild_footer_widget() {
 	genesis_widget_area ( 'footercontent', array(
 	'before' => '<div class="footercontainer">',
 	'after' => '</div>',));
 }
 
-//Position the PostFooter Area
+// Position the PostFooter Area
 function genesischild_postfooter_widget() {
 	echo '<div class="postfootercontainer"><div class="wrap">';
 	genesis_widget_area ( 'postfooterleft' );
@@ -348,14 +371,14 @@ function genesischild_postfooter_widget() {
 	echo '</div></div>';
 }
 
-//Position the Before Content Area
+// Position the Before Content Area
 function genesischild_before_entry_widget() {
 	if( is_single() ) {
 	genesis_widget_area ( 'before-entry' );
 	}
 }
 
-//Move Primary Navigation to Header Right without wrap
+// Move Primary Navigation to Header Right without wrap
 function themeprefix_modify_genesis_do_nav( $nav_output, $nav, $args ) {
 
 	$class = 'menu genesis-nav-menu menu-primary sf-menu';
@@ -387,7 +410,7 @@ function themeprefix_modify_genesis_do_nav( $nav_output, $nav, $args ) {
 	 return sprintf( $nav_output, $nav, $args );
 }
 
-//Allow PHP to run in Widgets
+// Allow PHP to run in Widgets
 function genesis_execute_php_widgets( $html ) {
 	if ( strpos( $html, "<" . "?php" ) !==false ) {
 		ob_start();
@@ -398,12 +421,12 @@ function genesis_execute_php_widgets( $html ) {
 	return $html;
 }
 
-//Read More Button For Excerpt
+// Read More Button For Excerpt
 function genesischild_read_more_link() {
 	return '... <a href="' . get_permalink() . '" class="more-link" title="Read More">Read More</a>';
 }
 
-// post info
+// Post info
 function genesischild_post_info( $post_info ) {
 	if ( !is_page() ) {
 	$post_info = '[post_date] by [post_author_posts_link] [post_comments] [post_edit]';
@@ -411,13 +434,13 @@ function genesischild_post_info( $post_info ) {
 	}
 }
 
-//Change the comments header
+// Change the comments header
 function genesischild_comment_form_defaults( $defaults ) {
 	$defaults['title_reply'] = __( 'Leave a Comment' );
 	return $defaults;
 }
 
-//Remove comment form HTML tags and attributes
+// Remove comment form HTML tags and attributes
 function genesischild_remove_comment_form_allowed_tags( $defaults ) {
 	$defaults['comment_notes_after'] = '';
 	return $defaults;
@@ -429,6 +452,13 @@ function sp_post_meta_filter($post_meta) {
 		$post_meta = '[post_categories before="Categories: "] [post_tags before="Tags: "]';
 		return $post_meta;
 	}
+}
+
+// Remove blog page and post page template to use custom one
+function be_remove_genesis_page_templates( $page_templates ) {
+	unset( $page_templates['page_archive.php'] );
+	unset( $page_templates['page_blog.php'] );
+	return $page_templates;
 }
 /*Function for Facebook HTML5 Script needs to go after body - escape all inner double quotes or use alternate single quotes
 function likebox_facebook_script () {
