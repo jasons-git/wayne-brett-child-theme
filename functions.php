@@ -13,7 +13,15 @@ add_action( 'genesis_setup', 'genesischild_theme_setup' );
 
 function genesischild_theme_setup() {
 
-	add_image_size( 'larger-thumb-test', 320, 190 );
+	//Add image sizes specifically for Featured Images (@frontpage widget)
+	add_image_size( 'larger-thumb', 320, 192 );
+	add_image_size( 'larger-thumb-crop' 320, 192, TRUE );
+	add_image_size( 'largest-thumb', 640, 384 );
+	add_image_size( 'largest-thumb-crop', 320, 384, TRUE);
+	add_image_size( 'tumb-test-size-1', 400, 240 );
+	add_image_size( 'tumb-test-size-2', 500, 300 );
+	add_image_size( 'tumb-test-size-3', 600, 360 );
+	add_image_size( 'tumb-test-size-4', 720, 432 );
 	// Add HTML5 markup structure
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 	add_theme_support( 'genesis-responsive-viewport' );
