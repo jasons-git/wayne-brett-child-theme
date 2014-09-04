@@ -13,7 +13,7 @@ add_action( 'genesis_setup', 'genesischild_theme_setup' );
 
 function genesischild_theme_setup() {
 
-
+	add_image_size( 'larger-thumb-test', 320, 190 );
 	// Add HTML5 markup structure
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
 	add_theme_support( 'genesis-responsive-viewport' );
@@ -187,7 +187,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'preheaderleft',
 		'name'        => __( 'Alt Pre-Header Left 50%', 'genesischild' ),
 		'description' => __( 'This is the home page pre-header area 1/2 left widget.', 'genesischild' ),
-		'before_widget' => '<div class="first one-half preheaderleft">',
+		'before_widget' => '<div id="widget-1" class="first one-half preheaderleft">',
 		'after_widget' => '</div>',
 	) );
 	// PREHEADER RIGHT WIDGET
@@ -195,7 +195,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'preheaderright',
 		'name'        => __( 'Alt Pre-Header Right 50%', 'genesischild' ),
 		'description' => __( 'This is the home page pre-header area 1/2 right widget.', 'genesischild' ),
-		'before_widget' => '<div class="one-half preheaderright">',
+		'before_widget' => '<div id="widget-2" class="one-half preheaderright">',
 		'after_widget' => '</div>',
 	) );
 	// HERO FULL WODGET
@@ -203,7 +203,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'hero',
 		'name'        => __( 'Alt Hero Full Length 100%', 'genesischild' ),
 		'description' => __( 'This is the home page full hero width widget.', 'genesischild' ),
-		'before_widget' => '<div class="wrap hero">',
+		'before_widget' => '<div id="widget-3" class="wrap hero">',
 		'after_widget' => '</div>',
 	) );
         //
@@ -211,7 +211,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-left-1',
 		'name'        => __( 'Alt Main Content 1 Top Left 33%', 'genesischild' ),
 		'description' => __( 'This is the home page top left content 1/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div class="first one-third homeleft">',
+		'before_widget' => '<div id="widget-4" class="first one-third homeleft">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -219,7 +219,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-middle-2',
 		'name'        => __( 'Alt Main Content 2 Top Middle 33%', 'genesischild' ),
 		'description' => __( 'This is the home page top middle content 1/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div class="one-third homemiddle">',
+		'before_widget' => '<div id="widget-5" class="one-third homemiddle">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -227,14 +227,14 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-right-3',
 		'name'        => __( 'Alt Main Content 3 Top Right 33%', 'genesischild' ),
 		'description' => __( 'This is the home page top right content 1/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div class="one-third homeright">',
+		'before_widget' => '<div id="widget-6" class="one-third homeright">',
 		'after_widget' => '</div>',
 	) );
 	genesis_register_sidebar( array(
 		'id'          => 'home-left-4',
 		'name'        => __( 'Alt Main Content 4 Bottom Left 33%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom left content 1/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div class="first one-third homeleft">',
+		'before_widget' => '<div id="widget-7" class="first one-third homeleft">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -242,7 +242,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-middle-5',
 		'name'        => __( 'Alt Main Content 5 Bottom Middle 33%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom middle content 1/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div class="one-third homemiddle">',
+		'before_widget' => '<div id="widget-8" class="one-third homemiddle">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -250,7 +250,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-right-6',
 		'name'        => __( 'Alt Main Content 6 Bottom Right 33%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom right 1 column content 1/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div class="one-third homeright">',
+		'before_widget' => '<div id="widget-8" class="one-third homeright">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -258,7 +258,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-top-1-2',
 		'name'        => __( 'Alt Main Content 1-2 combined Top left 66%', 'genesischild' ),
 		'description' => __( 'This is the home page top left 2 columns content 2/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div class="two-thirds homeleft">',
+		'before_widget' => '<div id="widget-9" class="two-thirds homeleft">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -266,7 +266,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-top-2-3',
 		'name'        => __( 'Alt Main Content 2-3 combined Top right 66%', 'genesischild' ),
 		'description' => __( 'This is the home page top right 2 columns content 2/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div class="two-thirds homeright">',
+		'before_widget' => '<div id="widget-10" class="two-thirds homeright">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -274,7 +274,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-bottom-4-5',
 		'name'        => __( 'Alt Main Content 4-5 combined Bottom left 66%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom left 2 columns content 2/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div class="two-thirds homeleft">',
+		'before_widget' => '<div id="widget-11" class="two-thirds homeleft">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -282,7 +282,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-bottom-5-6',
 		'name'        => __( 'Alt Main Content 5-6 combined Bottom right 66%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom right 2 columns content 2/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div class="two-thirds homeright">',
+		'before_widget' => '<div id="widget-12" class="two-thirds homeright">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -290,28 +290,28 @@ function genesischild_extra_widgets() {
 		'id'          => 'before-entry',
 		'name'        => __( 'Before Entry', 'genesischild' ),
 		'description' => __( 'This is the before content area', 'genesischild' ),
-		'before_widget' => '<div class="before-entry">',
+		'before_widget' => '<div id="widget-13" class="before-entry">',
 		'after_widget' => '</div>',
 	) );
 	genesis_register_sidebar( array(
 		'id'          => 'footercontent',
 		'name'        => __( 'Footer', 'genesischild' ),
 		'description' => __( 'This is the general footer area', 'genesischild' ),
-		'before_widget' => '<div class="footercontent">',
+		'before_widget' => '<div id="widget-14" class="footercontent">',
 		'after_widget' => '</div>',
 	) );
 	genesis_register_sidebar( array(
 		'id'          => 'postfooterleft',
 		'name'        => __( 'Post Footer Left', 'genesischild' ),
 		'description' => __( 'This is the post footer left area', 'genesischild' ),
-		'before_widget' => '<div class="first one-half postfooterleft">',
+		'before_widget' => '<div id="widget-15" class="first one-half postfooterleft">',
 		'after_widget' => '</div>',
 	) );
 	genesis_register_sidebar( array(
 		'id'          => 'postfooterright',
 		'name'        => __( 'Post Footer Right', 'genesischild' ),
 		'description' => __( 'This is the post footer right area', 'genesischild' ),
-		'before_widget' => '<div class="one-half postfooterright">',
+		'before_widget' => '<div id="widget-16" class="one-half postfooterright">',
 		'after_widget' => '</div>',
 	) );
 }
