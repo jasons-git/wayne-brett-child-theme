@@ -15,7 +15,7 @@ function genesischild_theme_setup() {
 
 	//Add image sizes specifically for Featured Images (@frontpage widget)
 	add_image_size( 'larger-thumb', 320, 192 );
-	add_image_size( 'larger-thumb-crop' 320, 192, TRUE );
+	add_image_size( 'larger-thumb-crop', 320, 192, TRUE );
 	add_image_size( 'largest-thumb', 640, 384 );
 	add_image_size( 'largest-thumb-crop', 320, 384, TRUE);
 	add_image_size( 'tumb-test-size-1', 400, 240 );
