@@ -56,13 +56,21 @@ function genesischild_theme_setup() {
 
 	//add_action( 'genesis_before', 'likebox_facebook_script' ); //Uncomment if using facebook likebox function below
 
-
+	// Short code in widgets
 	add_filter( 'widget_text', 'do_shortcode' );
+	// Allow PHP in widgets
 	add_filter( 'widget_text','genesis_execute_php_widgets' );
+	// Read more link
+	add_filter( 'the_content_more_link', 'sp_read_more_link' );
+	// Excerpts more link
 	add_filter( 'excerpt_more', 'genesischild_read_more_link' );
+
 	add_filter( 'comment_form_defaults', 'genesischild_comment_form_defaults' );
+
 	add_filter( 'comment_form_defaults', 'genesischild_remove_comment_form_allowed_tags' );
+
 	add_filter( 'genesis_post_info', 'genesischild_post_info' );
+
 	add_filter( 'genesis_do_nav','themeprefix_modify_genesis_do_nav', 10, 3 );
 	// Modify breadcrumb arguments.
 	add_filter( 'genesis_breadcrumb_args', 'sp_breadcrumb_args' );
@@ -77,8 +85,8 @@ function genesischild_theme_setup() {
 }
 
 ///////////////////////////////////////
-//Child Theme Functions Go Here
-//* Disable the superfish script
+// Child Theme Functions Go Here
+// Disable the superfish script
 function sp_disable_superfish() {
 	wp_deregister_script( 'superfish' );
 	wp_deregister_script( 'superfish-args' );
@@ -97,52 +105,35 @@ function genesischild_ie_styles() {
 
 
 function genesischild_scripts(){
+	wp_deregister_script( 'jquery' );
 	// jQuery UI path
-	wp_register_script ( 'jquery-ui', get_stylesheet_directory_uri() . '/js/min/jquery-ui.min.js', array( 'jquery' ), '1',true );
+	wp_enqueue_script ( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js', array( 'jquery' ), '1',true );
+	// jQuery UI path
+	wp_enqueue_script ( 'jquery-ui','//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js', array( 'jquery' ), '1',true );
+	// placeholder JS
+	wp_enqueue_script ( 'placeholder' ,'//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.8/jquery.placeholder.min.js', array( 'jquery' ), '1', true );
 	// Hoverintent path
-	wp_register_script ( 'hoverintent', get_stylesheet_directory_uri() . '/js/min/hoverIntent.js', array( 'jquery' ), '1',true );
+	wp_enqueue_script ( 'hoverintent', '//cdnjs.cloudflare.com/ajax/libs/jquery.hoverintent/2013.03.11/hoverintent.min.js', array( 'jquery' ), '1',true );
 	// Superfish path
-	wp_register_script ( 'superfish', get_stylesheet_directory_uri() . '/js/min/superfish.js', array( 'jquery'), '1', true );
+	wp_enqueue_script ( 'superfish','//cdnjs.cloudflare.com/ajax/libs/superfish/1.7.4/superfish.min.js', array( 'jquery'), '1', true );
 	// Superfish initialise path
-	wp_register_script ( 'superfish-initialise', get_stylesheet_directory_uri() . '/js/min/superfish-initialise.js', array( 'jquery', 'superfish' ), '1', true );
+	wp_enqueue_script ( 'superfish-initialise', get_stylesheet_directory_uri() . '/js/min/superfish-initialise.js', array( 'jquery', 'superfish' ), '1', true );
 	// Slicknav path
-	wp_register_script ( 'slicknav', get_stylesheet_directory_uri() . '/js/min/jquery.slicknav.min.js', array( 'jquery' ), '1',true );
+	wp_enqueue_script ( 'slicknav', get_stylesheet_directory_uri() . '/js/min/jquery.slicknav.min.js', array( 'jquery' ), '1',true );
 	// Slicknav initialise path
-	wp_register_script ( 'slicknav-initialise', get_stylesheet_directory_uri() . '/js/min/slicknav-initialise.js', array( 'jquery', 'slicknav' ), '1', true );
+	wp_enqueue_script ( 'slicknav-initialise', get_stylesheet_directory_uri() . '/js/min/slicknav-initialise.js', array( 'jquery', 'slicknav' ), '1', true );
 
-	// jQuery enqueue
-	wp_enqueue_script( 'jquery-min' );
-	// jQuery UI enqueue
-	wp_enqueue_script( 'jquery-ui' );
-	// Hoverintent enqueue
-	wp_enqueue_script( 'hoverintent' );
-	// Superfish enqueue
-	wp_enqueue_script( 'superfish' );
-	// Superfish initialise enqueue
-	wp_enqueue_script( 'superfish-initialise' );
-	// Slicknav enqueue
-	wp_enqueue_script( 'slicknav' );
-	// Slicknav initialise enqueue
-	wp_enqueue_script( 'slicknav-initialise' );
 }
 
 function genesischild_styles(){
-	wp_register_style ( 'jquery-uicss', get_stylesheet_directory_uri() . '/css/jquery-ui.css','', '1', 'all' );
+	wp_enqueue_style ( 'jquery-uicss', get_stylesheet_directory_uri() . '/css/jquery-ui.css','', '1', 'all' );
 	// 1
-	wp_register_style ( 'fontawesome' , '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css', '' , '4.1.0', 'all' );
+	wp_enqueue_style ( 'fontawesome' , '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css', '' , '4.1.0', 'all' );
 	// 2
-	wp_register_style ( 'superfishcss', get_stylesheet_directory_uri() . '/css/superfish.css','', '1', 'all' );
+	wp_enqueue_style ( 'superfishcss', get_stylesheet_directory_uri() . '/css/superfish.css','', '1', 'all' );
 	// 3
-	wp_register_style ( 'slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav.css','', '1', 'all' );
+	wp_enqueue_style ( 'slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav.css','', '1', 'all' );
 
-
-	wp_enqueue_style( 'jquery-uicss' );
-	// 1
-	wp_enqueue_style( 'fontawesome' );
-	// 2
-	wp_enqueue_style( 'superfishcss' );
-	// 3
-	wp_enqueue_style( 'slicknavcss' );
 }
 
 //Backstretch for Custom Background Image
@@ -151,7 +142,7 @@ function backstretch_background_scripts() {
 	if ( ! get_background_image() )
 		return;
 
-	wp_enqueue_script( 'backstretch', get_stylesheet_directory_uri() . '/js/min/backstretch.min.js', array( 'jquery' ), '2.0.4', true );
+	wp_enqueue_script( 'backstretch', '//cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js', array( 'jquery' ), '2.0.4', true );
 	wp_enqueue_script( 'backstretch-image', get_stylesheet_directory_uri().'/js/min/backstretch-initialise.js' , array( 'jquery', 'backstretch' ), '1', true );
 	wp_localize_script( 'backstretch-image', 'BackStretchImage', array( 'src' => get_background_image() ) );
 }
@@ -195,7 +186,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'preheaderleft',
 		'name'        => __( 'Alt Pre-Header Left 50%', 'genesischild' ),
 		'description' => __( 'This is the home page pre-header area 1/2 left widget.', 'genesischild' ),
-		'before_widget' => '<div id="widget-1" class="first one-half preheaderleft">',
+		'before_widget' => '<div id="preheaderleft" class="first one-half preheaderleft">',
 		'after_widget' => '</div>',
 	) );
 	// PREHEADER RIGHT WIDGET
@@ -203,7 +194,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'preheaderright',
 		'name'        => __( 'Alt Pre-Header Right 50%', 'genesischild' ),
 		'description' => __( 'This is the home page pre-header area 1/2 right widget.', 'genesischild' ),
-		'before_widget' => '<div id="widget-2" class="one-half preheaderright">',
+		'before_widget' => '<div id="preheaderright" class="one-half preheaderright">',
 		'after_widget' => '</div>',
 	) );
 	// HERO FULL WODGET
@@ -211,15 +202,15 @@ function genesischild_extra_widgets() {
 		'id'          => 'hero',
 		'name'        => __( 'Alt Hero Full Length 100%', 'genesischild' ),
 		'description' => __( 'This is the home page full hero width widget.', 'genesischild' ),
-		'before_widget' => '<div id="widget-3" class="wrap hero">',
+		'before_widget' => '<div id="hero" class="wrap hero home-widget">',
 		'after_widget' => '</div>',
 	) );
-        //
+				//
 	genesis_register_sidebar( array(
 		'id'          => 'home-left-1',
 		'name'        => __( 'Alt Main Content 1 Top Left 33%', 'genesischild' ),
 		'description' => __( 'This is the home page top left content 1/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div id="widget-4" class="first one-third homeleft">',
+		'before_widget' => '<div id="widget-1" class="first one-third homeleft home-widget"><div id="widget-1-image" class="inner"></div>',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -227,30 +218,30 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-middle-2',
 		'name'        => __( 'Alt Main Content 2 Top Middle 33%', 'genesischild' ),
 		'description' => __( 'This is the home page top middle content 1/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div id="widget-5" class="one-third homemiddle">',
-		'after_widget' => '</div>',
+		'before_widget' => '<div id="widget-2" class="one-third homemiddle home-widget">',
+		'after_widget' => '<div id="widget-2-image" class="inner"></div></div>',
 	) );
 	//
 	genesis_register_sidebar( array(
 		'id'          => 'home-right-3',
 		'name'        => __( 'Alt Main Content 3 Top Right 33%', 'genesischild' ),
 		'description' => __( 'This is the home page top right content 1/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div id="widget-6" class="one-third homeright">',
+		'before_widget' => '<div id="widget-3" class="one-third homeright home-widget"><div id="widget-3-image" class="inner"></div>',
 		'after_widget' => '</div>',
 	) );
 	genesis_register_sidebar( array(
 		'id'          => 'home-left-4',
 		'name'        => __( 'Alt Main Content 4 Bottom Left 33%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom left content 1/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div id="widget-7" class="first one-third homeleft">',
-		'after_widget' => '</div>',
+		'before_widget' => '<div id="widget-4" class="first one-third homeleft home-widget">',
+		'after_widget' => '<div id="widget-4-image" class="inner"></div></div>',
 	) );
 	//
 	genesis_register_sidebar( array(
 		'id'          => 'home-middle-5',
 		'name'        => __( 'Alt Main Content 5 Bottom Middle 33%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom middle content 1/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div id="widget-8" class="one-third homemiddle">',
+		'before_widget' => '<div id="widget-5" class="one-third homemiddle home-widget"><div id="widget-5-image" class="inner"></div>',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -258,7 +249,30 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-right-6',
 		'name'        => __( 'Alt Main Content 6 Bottom Right 33%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom right 1 column content 1/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div id="widget-8" class="one-third homeright">',
+		'before_widget' => '<div id="widget-6" class="one-third homeright home-widget">',
+		'after_widget' => '<div id="widget-6-image" class="inner"></div></div>',
+	) );
+	genesis_register_sidebar( array(
+		'id'          => 'home-left-7',
+		'name'        => __( 'Alt Main Content 7 Bottom Left 33%', 'genesischild' ),
+		'description' => __( 'This is the home page bottom left content 1/3 width widget (Row 3).', 'genesischild' ),
+		'before_widget' => '<div id="widget-7" class="first one-third homeleft home-widget"><div id="widget-7-image" class="inner"></div>',
+		'after_widget' => '</div>',
+	) );
+	//
+	genesis_register_sidebar( array(
+		'id'          => 'home-middle-8',
+		'name'        => __( 'Alt Main Content 8 Bottom Middle 33%', 'genesischild' ),
+		'description' => __( 'This is the home page bottom middle content 1/3 width widget (Row 3).', 'genesischild' ),
+		'before_widget' => '<div id="widget-8" class="one-third homemiddle home-widget">',
+		'after_widget' => '<div id="widget-8-image" class="inner"></div></div>',
+	) );
+	//
+	genesis_register_sidebar( array(
+		'id'          => 'home-right-9',
+		'name'        => __( 'Alt Main Content 9 Bottom Right 33%', 'genesischild' ),
+		'description' => __( 'This is the home page bottom right column content 1/3 width widget (Row 3).', 'genesischild' ),
+		'before_widget' => '<div id="widget-9" class="one-third homeright home-widget"><div id="widget-9-image" class="inner"></div>',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -266,7 +280,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-top-1-2',
 		'name'        => __( 'Alt Main Content 1-2 combined Top left 66%', 'genesischild' ),
 		'description' => __( 'This is the home page top left 2 columns content 2/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div id="widget-9" class="two-thirds homeleft">',
+		'before_widget' => '<div id="widget-1-2" class="two-thirds homeleft home-widget">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -274,7 +288,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-top-2-3',
 		'name'        => __( 'Alt Main Content 2-3 combined Top right 66%', 'genesischild' ),
 		'description' => __( 'This is the home page top right 2 columns content 2/3 width widget (Row 1).', 'genesischild' ),
-		'before_widget' => '<div id="widget-10" class="two-thirds homeright">',
+		'before_widget' => '<div id="widget-2-3" class="two-thirds homeright home-widget">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -282,7 +296,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-bottom-4-5',
 		'name'        => __( 'Alt Main Content 4-5 combined Bottom left 66%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom left 2 columns content 2/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div id="widget-11" class="two-thirds homeleft">',
+		'before_widget' => '<div id="widget-4-5" class="two-thirds homeleft home-widget">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -290,7 +304,7 @@ function genesischild_extra_widgets() {
 		'id'          => 'home-bottom-5-6',
 		'name'        => __( 'Alt Main Content 5-6 combined Bottom right 66%', 'genesischild' ),
 		'description' => __( 'This is the home page bottom right 2 columns content 2/3 width widget (Row 2).', 'genesischild' ),
-		'before_widget' => '<div id="widget-12" class="two-thirds homeright">',
+		'before_widget' => '<div id="widget-5-6" class="two-thirds homeright home-widget">',
 		'after_widget' => '</div>',
 	) );
 	//
@@ -298,28 +312,28 @@ function genesischild_extra_widgets() {
 		'id'          => 'before-entry',
 		'name'        => __( 'Before Entry', 'genesischild' ),
 		'description' => __( 'This is the before content area', 'genesischild' ),
-		'before_widget' => '<div id="widget-13" class="before-entry">',
+		'before_widget' => '<div id="before-entry" class="before-entry">',
 		'after_widget' => '</div>',
 	) );
 	genesis_register_sidebar( array(
 		'id'          => 'footercontent',
 		'name'        => __( 'Footer', 'genesischild' ),
 		'description' => __( 'This is the general footer area', 'genesischild' ),
-		'before_widget' => '<div id="widget-14" class="footercontent">',
+		'before_widget' => '<div id="footercontent" class="footercontent">',
 		'after_widget' => '</div>',
 	) );
 	genesis_register_sidebar( array(
 		'id'          => 'postfooterleft',
 		'name'        => __( 'Post Footer Left', 'genesischild' ),
 		'description' => __( 'This is the post footer left area', 'genesischild' ),
-		'before_widget' => '<div id="widget-15" class="first one-half postfooterleft">',
+		'before_widget' => '<div id="postfooterleft" class="first one-half postfooterleft">',
 		'after_widget' => '</div>',
 	) );
 	genesis_register_sidebar( array(
 		'id'          => 'postfooterright',
 		'name'        => __( 'Post Footer Right', 'genesischild' ),
 		'description' => __( 'This is the post footer right area', 'genesischild' ),
-		'before_widget' => '<div id="widget-16" class="one-half postfooterright">',
+		'before_widget' => '<div id="postfooterright" class="one-half postfooterright">',
 		'after_widget' => '</div>',
 	) );
 }
@@ -348,12 +362,18 @@ function genesischild_homecontent_widget() {
 	genesis_widget_area ( 'home-middle-2' );
 	//Position the Home Area 33%
 	genesis_widget_area ( 'home-right-3' );
-        //Position the Home Area 33%
+	//Position the Home Area 33%
 	genesis_widget_area ( 'home-left-4' );
 	//Position the Home Area 33%
 	genesis_widget_area ( 'home-middle-5' );
 	//Position the Home Area 33%
 	genesis_widget_area ( 'home-right-6' );
+	//Position the Home Area 33%
+	genesis_widget_area ( 'home-left-7' );
+	//Position the Home Area 33%
+	genesis_widget_area ( 'home-middle-8' );
+	//Position the Home Area 33%
+	genesis_widget_area ( 'home-right-9' );
 	//Position the Home Area 66%
 	genesis_widget_area ( 'home-top-1-2' );
 	//Position the Home Area 66%
@@ -415,7 +435,7 @@ function themeprefix_modify_genesis_do_nav( $nav_output, $nav, $args ) {
 	$nav_output = $nav_markup_open . $nav . $nav_markup_close;
 
 	// return the modified result
-	 return sprintf( $nav_output, $nav, $args );
+	return sprintf( $nav_output, $nav, $args );
 }
 
 // Allow PHP to run in Widgets
@@ -428,10 +448,13 @@ function genesis_execute_php_widgets( $html ) {
 	}
 	return $html;
 }
-
+// Read more link
+function sp_read_more_link() {
+	return '<a class="more-link" href="' . get_permalink() . '" title="Continue Reading">Continue Reading</a>';
+}
 // Read More Button For Excerpt
 function genesischild_read_more_link() {
-	return '... <a href="' . get_permalink() . '" class="more-link" title="Read More">Read More</a>';
+	return '... <a class="more-link" href="' . get_permalink() . '" title="Continue Reading">Continue Reading</a>';
 }
 
 // Post info
