@@ -1598,7 +1598,27 @@ ul.menu-primary li li li li li.sfHover ul {
 /
 /
 ------------------------------------------------------------------------------------------------------------------------*/
-
+article.entry {
+    padding: 0;
+    padding: 0;
+}
+article.category-featured-post-2 {
+    position: relative;
+}
+div#hero,
+div#widget-1,
+div#widget-2,
+div#widget-3,
+div#widget-4,
+div#widget-5,
+div#widget-6,
+div#widget-7,
+div#widget-8,
+div#widget-9 {
+    background: #fcfcfc;
+    border: 1px solid #DDD;
+    margin-bottom: 15px;
+}
 
 
 
