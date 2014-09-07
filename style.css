@@ -1459,6 +1459,7 @@ button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type=
 	width: 100%;
 	background-size: contain;
 }
+
 .nav-primary .genesis-nav-menu a:last-child {padding-right: 0;}
 
 .menu-primary
@@ -1648,44 +1649,46 @@ div#widget-9 {
 
 
 /*----------------------------------------------Footer-------------------------------------------------------------------*/
-div.footercontainer div.footercontent h4 {
-		display:none;
-}
+div.footercontainer div.footercontent h4 { display:none; }
+
 div.footercontainer div.footercontent ul {
     display: block;
-
     margin: 15px auto;
-
-
     width: 70%;
 }
+
 div.footercontainer div.footercontent ul li {
     display: inline-block;
 
     width: 12%;
     text-align: center;
 }
+
 div.footercontainer div.footercontent ul li a {
 		color: #ED581D;
 		font-size: 12px;
 }
+
 div.footercontainer div.footercontent ul li a:hover {
 	color: #FCFCFC;
 }
+
 .pit-wrap, .wb-wrap {
     height: 40px;
 }
+
 p.created-by, p.copyright {
     line-height: 20px;
-
     font-size: 12px;
 	text-align:left;
     margin: 0;
 }
+
 a.wb-com, a.pit-logo {
     /* text-shadow: 1px 1px 1px #FCFCFC; */
     font-size:18px
 }
+
 a.wb-com:hover, a.pit-logo:hover {
     color: #FCFCFC;
     text-shadow: 1px 1px 1px #ED581D;
@@ -1695,32 +1698,37 @@ a.wb-com:hover, a.pit-logo:hover {
 /
 /
 ------------------------------------------------------------------------------------------------------------------------*/
+div.home-widget.widget-9 h4.widget-title.widgettitle,
 section.widget.jetpack_subscription_widget h4.widget-title.widgettitle ,
 section#text-45 h4.widget-title.widgettitle {
     display: inherit;
     color: #3c3c3c;
-    font-family: 'lato';
+    font-family: 'Lato', sans-serif !important;
     font-weight: 600;
     line-height: 1.2;
     margin: 0 0 10px;
 }
+
+div.home-widget.widget-9,
 section#text-45,
 section.widget.jetpack_subscription_widget {
-  padding: 10px;
+	padding: 10px;
 	background:#fff;
 	color: #3c3c3c;
-
 	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 	box-shadow:         0 1px 3px rgba(0,0,0,0.2);
 }
-section#text-45 {
-	padding-top:0;
-}
+
+div.home-widget.widget-9:last-child,
+section#text-45 { padding-top:0; }
+
+div.home-widget.widget-9:first-child,
 section#blog_subscription-2 {
     margin-bottom: 0;
 	padding-bottom:0;
 }
+div.home-widget.widget-9 div.widget-wrap,
 section#text-45 div.widget-wrap,
 section.widget.jetpack_subscription_widget div.widget-wrap {
     padding: 30px 30px 20px;
@@ -1728,41 +1736,41 @@ section.widget.jetpack_subscription_widget div.widget-wrap {
 	background: #d3d3d3;
 	border:1px solid #ddd;
 }
-section#text-45 div.widget-wrap{
+div.home-widget.widget-9:last-child div.widget-wrap ,
+section#text-45 div.widget-wrap {
 	padding-top:0px;
 	border-top:none;
 }
-section#blog_subscription-2 div.widget-wrap {
-	padding-bottom:0px;
-}
-section#blog_subscription-2 h4.widget-title.widgettitle {
-    text-align:center;
-    padding-top:15px;
-}
-section#text-45 h4.widget-title.widgettitle {
-	padding-top:20px;
-}
-.sub-icons img {
-opacity: 0.6;
-}
-.sub-icons img:hover {
-opacity: 1;
-}
+div.home-widget.widget-9:first-child div.widget-wrap,
+section#blog_subscription-2 div.widget-wrap { padding-bottom:0px; }
+
+
+div.home-widget.widget-9:first-child h4.widget-title.widgettitle,
+section#blog_subscription-2 h4.widget-title.widgettitle { text-align:center; padding-top:15px; }
+
+
+div.home-widget.widget-9:last-child h4.widget-title.widgettitle,
+section#text-45 h4.widget-title.widgettitle { padding-top:20px; }
+
+.sub-icons img { opacity: 0.6; }
+
+.sub-icons img:hover { opacity: 1; }
+
 .sub {
-border: 1px solid #939393;
-font-size: 12px;
-padding: 5px 3px;
-color: #6d6d6d
+	border: 1px solid #939393;
+	font-size: 12px;
+	padding: 5px 3px;
+	color: #6d6d6d;
 }
-.subbutton:hover {
-opacity: .85;
-}
-section.widget.jetpack_subscription_widget input#subscribe-field,
-section.widget.jetpack_subscription_widget input[type="submit"] {
+
+.subbutton:hover { opacity: .85; }
+
+p#subscribe-email input#subscribe-field,
+p#subscribe-submit input[type="submit"] {
     width: 70%;
     padding: 3px 5px !important;
     line-height: 16px !important;
-		min-height:40px;
+	min-height:40px;
 }
 
 
