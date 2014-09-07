@@ -1,1 +1,1 @@
-jQuery(function(e){e(".menu-primary").slicknav({label:"",easingOpen:"easeOutBounce",duration:400,prependTo:"body"})});
+jQuery(function(e){e(".menu-primary").slicknav({label:"",easingOpen:"easeOutBounce",duration:1e3,prependTo:"body"})});
