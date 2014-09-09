@@ -74,15 +74,11 @@
 
         // create menu bar
         $this.mobileNav.attr('class', prefix + '_nav');
-        menuBar = $('<div class="' + prefix + '_menu"></div>');
+        menuBar = $('<div class="' + prefix + '_menu"><span class="' + prefix + '_home"><a href="http://dev2.practicalit.info"><i class="fa fa-home"></i></a></span></div>');
         $this.btn = $(
             ['<' + settings.parentTag + ' aria-haspopup="true" tabindex="0" class="' + prefix + '_btn ' + prefix + '_collapsed">',
                 '<span class="' + prefix + '_menutxt">' + settings.label + '</span>',
-                '<span class="' + iconClass + '">',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                    '<span class="' + prefix + '_icon-bar"></span>',
-                '</span>',
+                '<span class="' + iconClass + '"><i class="fa fa-bars"></i><i class="fa fa-times"></i></span>',
             '</' + settings.parentTag + '>'
             ].join('')
         );
