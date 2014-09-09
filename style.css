@@ -2034,8 +2034,8 @@ header.entry-header {
 	}
 
 	section.home-module-container .one-third {
-			width: 100%;
-			margin-left: 0;
+		width: 100%;
+		margin-left: 0;
 		margin-bottom: 20px;
 	}
 	/* .menu-primary is the original menu */
@@ -2043,14 +2043,25 @@ header.entry-header {
 		display:none;
 	}
 	a.slicknav_btn {
-		width:100%;
-		height: 40px;
+		width: 70px;
+		height: 70px;
 		display:block;
 		margin: 0;
 		padding: 0;
 		text-shadow: none;
 		border: none;
-		float: none;
+		float: left;
+
+	}
+	span.slicknav_home {
+		width: 70px;
+		height: 70px;
+		display: block;
+		margin: 0;
+		padding: 0;
+		text-shadow: none;
+		border: none;
+		float: right;
 	}
 	.slicknav_menu {
 		display:block;
@@ -2059,32 +2070,31 @@ header.entry-header {
 		background: #ED581D;
 		z-index:99999;
 	}
-	.slicknav_nav li ul.sub-menu li {
-			border-bottom: 1px solid rgba(252, 252, 252, 0.12);
-	}
+	.slicknav_nav li ul.sub-menu li {margin-bottom: 0px;}
 	div.slicknav_menu span.slicknav_menutxt,
 	div.slicknav_menu span.slicknav_icon {
 		display: inline-block;
 		height: 65px;
 	}
+	span.slicknav_home i.fa.fa-home,
 	div.slicknav_menu span.slicknav_icon {
-		float: left;
-		width: 10%;
-		padding-top: 20px;
-		margin-left: 5%;
+		width: 15%;
+		padding: 15px 0px 0px 25px;
 	}
-	.slicknav_menu .slicknav_icon-bar {
-		background-color: #EDEDED;
-		width: 70%;
-		-webkit-border-radius: 1px;
-		-moz-border-radius: 1px;
-		border-radius: 1px;
-		-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-		-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-		display: block;
-		height: 0.15em;
-		margin-bottom: 3px;
+	span.slicknav_home i.fa.fa-home,
+	span.slicknav_icon.slicknav_no-text i.fa.fa-bars,
+	span.slicknav_icon.slicknav_no-text i.fa.fa-times {
+		width:50px;
+		height:50px;
+		color:#FCFCFC;
+		font-size:40px;
+		font-weight:200;
+	}
+	a.slicknav_btn.slicknav_collapsed i.fa.fa-times {
+    display: none;
+	}
+	a.slicknav_btn.slicknav_open i.fa.fa-bars {
+		display: none;
 	}
 	div.site-container{
 		padding-top:0px;

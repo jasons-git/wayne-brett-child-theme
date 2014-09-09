@@ -60,6 +60,10 @@ function genesischild_theme_setup() {
 	//All the rest load before
 	add_action( 'wp_enqueue_scripts', 'genesischild_scripts', 997 );
 	//
+	add_action( 'wp_enqueue_scripts', 'child_theme_add_lightbox' );
+	// Enqueue files needed for Responsive-Tabs script
+	add_action( 'wp_enqueue_scripts', 'enqueue_responsive_tabs' );
+	//
 	add_action( 'wp_enqueue_scripts', 'backstretch_background_scripts' );
 	//
 	add_action( 'widgets_init', 'genesischild_extra_widgets' );
@@ -127,11 +131,7 @@ function genesischild_ie_styles() {
 
 function genesischild_scripts(){
 	// jQuery UI path
-	wp_register_script ( 'jquery-ui',  get_stylesheet_directory_uri() . '/js/min/jquery-ui.min.js', array( 'jquery' ), 'null', true );
-	//
-	wp_register_script ( 'fancybox', get_stylesheet_directory_uri() . '/js/jquery.fancybox.pack.js', array( 'jquery' ), false, true );
-	//
-	wp_register_script ( 'lightbox', get_stylesheet_directory_uri() . '/js/lightbox.js', array( 'fancybox' ), false, true );
+	wp_register_script ( 'jquery-ui',  get_stylesheet_directory_uri() . '/js/min/jquery-ui.min.js', array( 'jquery' ), null, true );
 	// Hoverintent path
 	wp_register_script ( 'hoverintent', get_stylesheet_directory_uri() . '/js/min/hoverIntent.js', array( 'jquery' ), '1',true );
 	// Superfish path
@@ -139,13 +139,11 @@ function genesischild_scripts(){
 	// Superfish initialise path
 	wp_register_script ( 'superfish-initialise', get_stylesheet_directory_uri() . '/js/min/superfish-initialise.js', array( 'jquery', 'superfish' ), '1', true );
 	// Slicknav path
-	wp_register_script ( 'slicknav', get_stylesheet_directory_uri() . '/js/min/jquery.slicknav.min.js', array( 'jquery' ), '1', true );
+	wp_register_script ( 'slicknav', get_stylesheet_directory_uri() . '/js/min/jquery.slicknav.js', array( 'jquery' ), '1', true );
 	// Slicknav initialise path
 	wp_register_script ( 'slicknav-initialise', get_stylesheet_directory_uri() . '/js/min/slicknav-initialise.js', array( 'jquery', 'slicknav' ), '1', true );
 
 	wp_enqueue_script('jquery-ui');
-	wp_enqueue_script('fancybox');
-	wp_enqueue_script('lightbox');
 	wp_enqueue_script('hoverintent');
 	wp_enqueue_script('superfish');
 	wp_enqueue_script('superfish-initialise');
@@ -157,8 +155,6 @@ function genesischild_scripts(){
 function genesischild_styles(){
 	//
 	wp_register_style ( 'jquery-uicss', get_stylesheet_directory_uri() . '/css/jquery-ui.css','', '1', 'all' );
-	//
-	wp_register_style ( 'lightbox-style', get_stylesheet_directory_uri() . '/css/jquery.fancybox.css' );
 	// 1
 	wp_register_style ( 'fontawesome' , '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css', '' , '4.1.0', 'all' );
 	// 2
@@ -167,13 +163,32 @@ function genesischild_styles(){
 	wp_register_style ( 'slicknavcss', get_stylesheet_directory_uri() . '/css/slicknav.css','', '1', 'all' );
 
 	wp_enqueue_style ('jquery-uicss');
-	wp_enqueue_style ('lightbox-style');
 	wp_enqueue_style ('fontawesome');
 	wp_enqueue_style ('superfishcss');
 	wp_enqueue_style ('slicknavcss');
 
 }
+// Enqueue Scripts/Styles for our Lightbox
+function child_theme_add_lightbox() {
+  wp_register_script( 'fancybox', get_stylesheet_directory_uri() . '/js/jquery.fancybox.pack.js', array( 'jquery' ), null, true );
+  wp_register_script( 'lightbox', get_stylesheet_directory_uri() . '/js/lightbox.js', array( 'fancybox' ), null, true );
+  wp_register_style( 'lightbox-style', get_stylesheet_directory_uri() . '/css/jquery.fancybox.css' );
 
+	wp_enqueue_script ('fancybox');
+	wp_enqueue_script ('lightbox');
+	wp_enqueue_style ('lightbox-style');
+}
+// Enqueue files needed for Responsive-Tabs script
+function enqueue_responsive_tabs() {
+
+	wp_register_script( 'responsive-tabs',  get_stylesheet_directory_uri() . '/js/responsiveTabs.min.js', array( 'jquery' ), '1.0.0', true );
+	wp_register_script( 'responsive-tabs-init',  get_stylesheet_directory_uri() . '/js/responsiveTabs.min.init.js', array( 'responsive-tabs' ), '1.0.0', true );
+	wp_register_style( 'responsive-tabs-css', get_stylesheet_directory_uri() . '/css/responsive-tabs.css' );
+
+	wp_enqueue_script('responsive-tabs');
+	wp_enqueue_script('responsive-tabs-init');
+	wp_enqueue_style('responsive-tabs-css');
+}
 //Backstretch for Custom Background Image
 function backstretch_background_scripts() {
 	// Load scripts only if custom background is being used
@@ -489,7 +504,7 @@ function genesis_execute_php_widgets( $html ) {
 function read_more_link() {
 
 	$trimtitle = get_the_title();
-	$shorttitle = wp_trim_words( $trimtitle, $num_words = 5, $more = '…' );
+	$shorttitle = wp_trim_words( $trimtitle, $num_words = 3, $more = '…' );
 	return '<div class="rmore"><a class="more-link" rel="nofollow" href="'.get_permalink().'">' .__(' Continue Reading ') . $shorttitle . '</a></div>';
 }
 
