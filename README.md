@@ -81,3 +81,6 @@ Download the zip rename the theme '**genesischild**' - place this theme in your 
 ![Wayne Brett Metro Genesis Child Theme Widget Area (All the Widgets with "Alt" in the name are for the widgetized home page)](http://waynebrett.com/wp-content/uploads/2014/08/widgets-metro-wayne-brett-child-theme1.png)
 
 ![Wayne Brett Metro Genesis Child Theme Widget Areas (with a detailed description)](http://waynebrett.com/wp-content/uploads/2014/08/widgets-open-metro-wayne-brett-child-theme.png)
+
+#Testing the commit of a branch in Github
+Hello World!
