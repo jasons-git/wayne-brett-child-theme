@@ -1,4 +1,4 @@
-#Wayne Brett Metro Genesis Child Theme
+#Wayne Brett Metro UI Genesis Child Theme
 
 This is a basic starter **Genesis Child Theme** to be used with the **Genesis Framework** on **WordPress**.
 
